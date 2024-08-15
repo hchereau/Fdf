@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:15:49 by imback            #+#    #+#             */
-/*   Updated: 2024/08/14 16:16:12 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/15 08:50:58 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_state	is_valid_file(char *file)
 	t_state	state;
 
 	state = success;
-	if (file == NULL || is_existing_file(file) == success)
+	if (file == NULL || is_existing_file(file) == error)
 	{
 		print_error(ERROR_FILE);
 		state = error;

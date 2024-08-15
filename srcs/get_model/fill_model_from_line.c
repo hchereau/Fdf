@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fill_line_in_model.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 11:12:47 by imback            #+#    #+#             */
-/*   Updated: 2024/08/15 08:51:23 by imback           ###   ########.fr       */
+/*   Created: 2024/08/14 17:20:40 by imback            #+#    #+#             */
+/*   Updated: 2024/08/15 09:15:25 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int ac, char **av)
+t_state	fill_model_from_line(char *line, int **model)
 {
-	int	**model;
 
-	if (get_model(av[1], model) == success)
-		print_model(model);
-	return (0);
 }
