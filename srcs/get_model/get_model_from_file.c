@@ -6,33 +6,33 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:21:48 by imback            #+#    #+#             */
-/*   Updated: 2024/08/17 13:23:48 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/17 18:50:33 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_state	fill_model_from_line(char *line, int *model,
-		size_t len_split_line)
+static t_state	fill_model_from_line(char *line, t_model *model,
+		size_t len_split_line, int i_matrix)
 {
-	char	**split;
+	char		**split;
+	size_t		i_split;
 
+	i_split = 0;
 	split = ft_split(line, ' ');
 	if (split == NULL || len_split_line != count_words(line, ' '))
 		return (error);
-	model = (int *)malloc(sizeof(int) * len_split_line);
-	if (model == NULL)
+	model->matrix[i_matrix] = (int *)malloc(sizeof(int) * len_split_line);
+	if (model->matrix[i_matrix] == NULL)
 	{
 		free_strs(split);
 		return (error);
 	}
-	while (*split != NULL)
+	while (split[i_split] != NULL)
 	{
-		*model = ft_atoi(*split);
-		++model;
-		++split;
+		model->matrix[i_matrix][i_split] = ft_atoi(split[i_split]);
+		++i_split;
 	}
-	// free_strs(split);
 	return (success);
 }
 
@@ -53,7 +53,7 @@ static t_state	fill_model(t_model *model, int len_split_line,
 	while (line != NULL && is_valid_line == success && i < model->rows)
 	{
 		is_valid_line = fill_model_from_line(line,
-				model->matrix[i], len_split_line);
+				model, len_split_line, i);
 		refresh_line(line, fd);
 		++i;
 	}
@@ -76,13 +76,19 @@ t_state	get_model_from_file(char *file, t_model *model)
 	t_state		state;
 
 	line = get_next_line(fd);
-	model->rows = get_model_size(file);
 	if (line == NULL)
 	{
 		ft_printf("get_model_from_file: Invalid file\n");
 		return (error);
 	}
+	model->rows = get_model_size(file);
 	model->matrix = (int **)malloc(sizeof(int *) * model->rows);
+	if (model->matrix == NULL)
+	{
+		ft_printf("get_model_from_file: Malloc error\n");
+		free(line);
+		return (error);
+	}
 	state = fill_model(model, count_words(line, ' '), line, fd);
 	close(fd);
 	return (state);
@@ -103,5 +109,6 @@ int	get_model_size(char *file)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	free(line);
 	return (size);
 }

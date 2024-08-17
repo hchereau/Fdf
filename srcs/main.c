@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:12:47 by imback            #+#    #+#             */
-/*   Updated: 2024/08/17 12:34:12 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/17 18:27:45 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ int	main(int ac, char **av)
 
 	if (get_model(av[1], &model) == success)
 	{
+		if (model.matrix == NULL)
+        {
+            printf("Error: model matrix is NULL\n");
+            return (1);
+        }
+		// printf("%d\n\n", model.matrix[0][0]);
 		print_model(&model);
 		free_model(model.matrix, model.rows);
 	}
@@ -46,9 +52,9 @@ int	main(int ac, char **av)
 		printf("Failed to load model from file: %s\n", av[1]);
 		return (1);
 	}
-
-	return (0);
 }
+// 	return (0);
+// }
 // int	main(int ac, char **av)
 // {
 // 	int	**model;
