@@ -6,21 +6,21 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:21:48 by imback            #+#    #+#             */
-/*   Updated: 2024/08/17 18:50:33 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/17 19:14:31 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_state	fill_model_from_line(char *line, t_model *model,
+static t_state	fill_model_from_line(char **line, t_model *model,
 		size_t len_split_line, int i_matrix)
 {
 	char		**split;
 	size_t		i_split;
 
 	i_split = 0;
-	split = ft_split(line, ' ');
-	if (split == NULL || len_split_line != count_words(line, ' '))
+	split = ft_split(*line, ' ');
+	if (split == NULL || len_split_line != count_words(*line, ' '))
 		return (error);
 	model->matrix[i_matrix] = (int *)malloc(sizeof(int) * len_split_line);
 	if (model->matrix[i_matrix] == NULL)
@@ -33,24 +33,25 @@ static t_state	fill_model_from_line(char *line, t_model *model,
 		model->matrix[i_matrix][i_split] = ft_atoi(split[i_split]);
 		++i_split;
 	}
+	free_strs(split);
 	return (success);
 }
 
-static void	refresh_line(char *line, int fd)
+static void	refresh_line(char **line, int fd)
 {
-	free(line);
-	line = get_next_line(fd);
+	free(*line);
+	*line = get_next_line(fd);
 }
 
 static t_state	fill_model(t_model *model, int len_split_line,
-	char *line, int fd)
+	char **line, int fd)
 {
 	t_state	is_valid_line;
 	int		i;
 
 	is_valid_line = success;
 	i = 0;
-	while (line != NULL && is_valid_line == success && i < model->rows)
+	while (*line != NULL && is_valid_line == success && i < model->rows)
 	{
 		is_valid_line = fill_model_from_line(line,
 				model, len_split_line, i);
@@ -89,7 +90,7 @@ t_state	get_model_from_file(char *file, t_model *model)
 		free(line);
 		return (error);
 	}
-	state = fill_model(model, count_words(line, ' '), line, fd);
+	state = fill_model(model, count_words(line, ' '), &line, fd);
 	close(fd);
 	return (state);
 }
