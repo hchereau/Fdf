@@ -6,13 +6,14 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:21:48 by imback            #+#    #+#             */
-/*   Updated: 2024/08/17 12:45:40 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/17 13:23:48 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_state	fill_model_from_line(char *line, int *model, size_t len_split_line)
+static t_state	fill_model_from_line(char *line, int *model,
+		size_t len_split_line)
 {
 	char	**split;
 
@@ -31,6 +32,7 @@ static t_state	fill_model_from_line(char *line, int *model, size_t len_split_lin
 		++model;
 		++split;
 	}
+	// free_strs(split);
 	return (success);
 }
 
@@ -48,7 +50,7 @@ static t_state	fill_model(t_model *model, int len_split_line,
 
 	is_valid_line = success;
 	i = 0;
-	while (line != NULL && is_valid_line == success)
+	while (line != NULL && is_valid_line == success && i < model->rows)
 	{
 		is_valid_line = fill_model_from_line(line,
 				model->matrix[i], len_split_line);
