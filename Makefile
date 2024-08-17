@@ -13,9 +13,16 @@ LIB_MLX := $(MINILIBX_FOLDER)/libmlx.a
 
 ### SRCS ######################################################################
 
-PATH_SRCS := srcs
+PATH_SRCS += srcs
+PATH_SRCS += srcs/get_model
 
 SRCS += main.c
+SRCS += error_state.c
+
+SRCS += get_model.c
+SRCS += get_model_from_file.c
+SRCS += is_valid_file.c
+SRCS += free_model.c
 
 vpath %.c $(PATH_SRCS)
 
@@ -38,7 +45,7 @@ HEADERS += $(INCLUDES_FDF)fdf.h
 
 ### COMPILATION ################################################################
 
-CC := CC
+CC := cc
 
 CFLAGS += -Wall
 CFLAGS += -Wextra
@@ -58,8 +65,8 @@ LINKS += -fPIE
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(LIB_MLX) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(LIB_MLX) $(LINKS) $(INCLUDES)
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(INCLUDES)
 
 $(OBJS): $(PATH_OBJS)%.o: %.c $(HEADERS)
 		@mkdir -p $(PATH_OBJS)
@@ -68,13 +75,9 @@ $(OBJS): $(PATH_OBJS)%.o: %.c $(HEADERS)
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_FOLDER)
 
-$(LIB_MLX):
-	$(MAKE) -C $(MINILIBX_FOLDER)
-
 clean:
 	$(RM) -r $(PATH_OBJS)
 	$(MAKE) -C $(LIBFT_FOLDER) clean
-	$(MAKE) -C $(MINILIBX_FOLDER) clean
 
 fclean: clean
 	$(RM) $(NAME)
