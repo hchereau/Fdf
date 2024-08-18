@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:21:48 by imback            #+#    #+#             */
-/*   Updated: 2024/08/17 19:14:31 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/18 18:51:04 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ t_state	get_model_from_file(char *file, t_model *model)
 		free(line);
 		return (error);
 	}
-	state = fill_model(model, count_words(line, ' '), &line, fd);
+	model->cols = count_words(line, ' ');
+	state = fill_model(model, model->cols, &line, fd);
 	close(fd);
 	return (state);
 }
