@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:12:47 by imback            #+#    #+#             */
-/*   Updated: 2024/08/18 23:58:52 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/19 00:12:53 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 	if (get_model(av[1], &model) == success)
 	{
 		if (get_matrix_from_model(&matrix, &model) == success)
-			print_model(&matrix);
+			print_matrix(&matrix);
 		else
 		{
 			printf("Failed to get matrix from model\n");

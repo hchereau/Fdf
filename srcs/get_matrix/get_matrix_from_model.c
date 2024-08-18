@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:34:12 by imback            #+#    #+#             */
-/*   Updated: 2024/08/19 00:09:26 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/19 00:09:51 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static t_state	init_matrix(t_matrix *matrix, t_model *model)
 
 static t_state	fill_matrix(t_matrix *matrix, t_model *model)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;

@@ -15,14 +15,23 @@ LIB_MLX := $(MINILIBX_FOLDER)/libmlx.a
 
 PATH_SRCS += srcs
 PATH_SRCS += srcs/get_model
+PATH_SRCS += srcs/get_matrix
+
+# srcs
 
 SRCS += main.c
 SRCS += error_state.c
+
+# srcs/get_model
 
 SRCS += get_model.c
 SRCS += get_model_from_file.c
 SRCS += is_valid_file.c
 SRCS += free_model.c
+
+# srcs/get_matrix
+
+SRCS += get_matrix_from_model.c
 
 vpath %.c $(PATH_SRCS)
 
