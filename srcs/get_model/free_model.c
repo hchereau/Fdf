@@ -6,21 +6,34 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 12:17:51 by imback            #+#    #+#             */
-/*   Updated: 2024/08/17 12:18:24 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/19 16:19:29 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	free_model(int **matrix, int rows)
+void	free_matrix(t_matrix *matrix)
 {
 	int	i;
 
 	i = 0;
-	while (i < rows)
+	while (i < matrix->rows)
 	{
-		free(matrix[i]);
+		free(matrix->points[i]);
 		i++;
 	}
-	free(matrix);
+	free(matrix->points);
+}
+
+void	free_model(t_model *model)
+{
+	int	i;
+
+	i = 0;
+	while (i < model->rows)
+	{
+		free(model->matrix[i]);
+		i++;
+	}
+	free(model->matrix);
 }

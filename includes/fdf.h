@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/08/19 11:26:23 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/19 16:04:22 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,6 @@ typedef struct s_model
 	int		cols;
 }	t_model;
 
-typedef struct s_display
-{
-	void	*p_mlx;
-	void	*p_win;
-}	t_display;
-
 typedef struct s_img
 {
 	void	*img;
@@ -71,17 +65,25 @@ typedef struct s_matrix
 	int		cols;
 }	t_matrix;
 
+typedef struct s_display
+{
+	void		*p_mlx;
+	void		*p_win;
+	t_matrix	*matrix;
+}	t_display;
+
 t_state	get_model(char *file, t_model *model);
 t_state	is_valid_file(char *file);
 t_state	get_model_from_file(char *file, t_model *model);
 int		get_model_size(char *file);
-void	free_model(int **matrix, int rows);
+void	free_model(t_model *model);
 void	print_error(int signal);
 t_state	get_matrix_from_model(t_matrix *matrix, t_model *model);
 void	setup_mlx(t_display *display, t_img *img);
-void	print_matrix(t_matrix *matrix, t_display *display, t_img *img);
+void	print_matrix(t_display *display, t_img *img);
 void	img_pix_put(t_img *img, int x, int y, int color);
-void	print_matrix_with_mlx(t_matrix *matrix);
-void	close_window(t_display *display, t_matrix *matrix);
-int		key_hook(int keycode, t_display *display, t_matrix *matrix);
+void	print_matrix_with_mlx(t_display *display);
+void	close_window(t_display *display);
+int		key_hook(int keycode, t_display *display);
+void	free_matrix(t_matrix *matrix);
 #endif

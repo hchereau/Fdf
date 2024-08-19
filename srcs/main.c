@@ -6,62 +6,63 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:12:47 by imback            #+#    #+#             */
-/*   Updated: 2024/08/19 11:53:42 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/19 16:59:07 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-
-// void print_model(t_model *model)
-// {
-// 	int i, j;
-// 	for (i = 0; i < model->rows; i++)
-// 	{
-// 		for (j = 0; j < 4; j++)
-// 		{
-// 			printf("%d ", model->matrix[i][j]);
-// 		}
-// 		printf("\n");
-// 	}
-// }
-
-int	main(int ac, char **av)
+static t_state	get_matrix(char *file, t_display *display)
 {
+	t_state		state;
 	t_model		model;
-	t_matrix	matrix;
+	t_matrix	matrix_temp;
 
-	if (ac != 2)
+	state = error;
+	if (get_model(file, &model) == success)
 	{
-		printf("Usage: %s <file>\n", av[0]);
-		return (ERROR_MAIN);
-	}
-	if (get_model(av[1], &model) == success)
-	{
-		if (get_matrix_from_model(&matrix, &model) == success)
+		if (get_matrix_from_model(&matrix_temp, &model) == success)
 		{
-			print_matrix_with_mlx(&matrix);
+			display->matrix = &matrix_temp;
+			state = success;
 		}
 		else
 		{
 			printf("Failed to get matrix from model\n");
-			free_model(model.matrix, model.rows);
-			return (ERROR_MAIN);
 		}
-		free_model(model.matrix, model.rows);
+		free_model(&model);
 	}
 	else
 	{
-		printf("Failed to load model from file: %s\n", av[1]);
-		return (ERROR_MAIN);
+		printf("Failed to get model from file: %s\n", file);
+	}
+	return (state);
+}
+
+static bool	is_valid_argument_number(int ac, char *output)
+{
+	if (ac == 2)
+		return (true);
+	else
+	{
+		ft_printf("Usage: %s <file>\n", output);
+		return (false);
 	}
 }
 
-// int	main(int ac, char **av)
-// {
-// 	int	**model;
+int	main(int ac, char **av)
+{
+	t_display	display;
+	int			state_main;
 
-// 	if (get_model(av[1], model) == success)
-// 		print_model(model);
-// 	return (0);
-// }
+	state_main = ERROR_MAIN;
+	if (is_valid_argument_number(ac, av[0]) == true)
+	{
+		if (get_matrix(av[1], &display) == success)
+		{
+			print_matrix_with_mlx(&display);
+		}
+	}
+	return (state_main);
+
+}

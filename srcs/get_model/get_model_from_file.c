@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:21:48 by imback            #+#    #+#             */
-/*   Updated: 2024/08/18 18:51:04 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/19 14:03:56 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static t_state	fill_model(t_model *model, int len_split_line,
 	if (is_valid_line == error)
 	{
 		ft_printf("fill_model: Invalid file\n");
-		free_model(model->matrix, model->rows);
+		free_model(model);
 		return (error);
 	}
 	else
