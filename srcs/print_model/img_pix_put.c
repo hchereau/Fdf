@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_matrix_with_mlx.c                            :+:      :+:    :+:   */
+/*   img_pix_put.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/18 18:45:57 by imback            #+#    #+#             */
-/*   Updated: 2024/08/19 09:26:40 by imback           ###   ########.fr       */
+/*   Created: 2024/08/19 09:30:32 by imback            #+#    #+#             */
+/*   Updated: 2024/08/19 09:31:34 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_state	print_matrix_with_mlx(t_matrix *matrix)
+void	img_pix_put(t_img *img, int x, int y, int color)
 {
-	t_display	display;
-	t_img		img;
+	char	*pixel;
+	int		i;
 
-	setup_mlx(&display, &img);
-	print_matrix(matrix, &display, &img);
+	if (x < WINDOW_WIDTH && y < WINDOW_HEIGHT)
+	{
+		i = img->bpp - 8;
+		pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
+		while (i >= 0)
+		{
+			if (img->endian != 0)
+				*pixel++ = (color >> i) & 0xFF;
+			else
+				*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
+			i -= 8;
+		}
+	}
 }

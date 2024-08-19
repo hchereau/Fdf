@@ -74,8 +74,8 @@ LINKS += -fPIE
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(INCLUDES)
+$(NAME): $(LIBFT) $(LIB_MLX) $(OBJS)
+	$(CC) $(CFLAGS) $(LINKS) $(OBJS) -o $(NAME) $(LIBFT) $(INCLUDES)
 
 $(OBJS): $(PATH_OBJS)%.o: %.c $(HEADERS)
 		@mkdir -p $(PATH_OBJS)
@@ -83,6 +83,9 @@ $(OBJS): $(PATH_OBJS)%.o: %.c $(HEADERS)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_FOLDER)
+
+$(LIB_MLX):
+	$(MAKE) -C $(MINILIBX_FOLDER)
 
 clean:
 	$(RM) -r $(PATH_OBJS)

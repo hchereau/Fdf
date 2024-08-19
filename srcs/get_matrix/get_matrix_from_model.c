@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:34:12 by imback            #+#    #+#             */
-/*   Updated: 2024/08/19 00:09:51 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/19 09:17:32 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_state	init_matrix(t_matrix *matrix, t_model *model)
 }
 
 
-static t_state	fill_matrix(t_matrix *matrix, t_model *model)
+static t_state	add_points(t_matrix *matrix, t_model *model)
 {
 	int	x;
 	int	y;
@@ -38,8 +38,8 @@ static t_state	fill_matrix(t_matrix *matrix, t_model *model)
 			return (error);
 		while (x < model->cols)
 		{
-			matrix->points[y][x].x = x;
-			matrix->points[y][x].y = y;
+			matrix->points[y][x].x = DISTANCE * x;
+			matrix->points[y][x].y = DISTANCE * y;
 			matrix->points[y][x].z = model->matrix[y][x];
 			matrix->points[y][x].color = WHITE;
 			++x;
@@ -56,7 +56,7 @@ t_state	get_matrix_from_model(t_matrix *matrix, t_model *model)
 	state = error;
 	if (init_matrix(matrix, model) == success)
 	{
-		if (fill_matrix(matrix, model) == success)
+		if (add_points(matrix, model) == success)
 		{
 			state = success;
 		}
