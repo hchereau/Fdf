@@ -8,7 +8,7 @@ LIBFT := $(LIBFT_FOLDER)/libft.a
 
 ### MINILIBX ##################################################################
 
-MINILIBX_FOLDER := minilibx/
+MINILIBX_FOLDER := minilibx-linux/
 LIB_MLX := $(MINILIBX_FOLDER)/libmlx.a
 
 ### SRCS ######################################################################
@@ -16,6 +16,9 @@ LIB_MLX := $(MINILIBX_FOLDER)/libmlx.a
 PATH_SRCS += srcs
 PATH_SRCS += srcs/get_model
 PATH_SRCS += srcs/get_matrix
+PATH_SRCS += srcs/print_matrix
+PATH_SRCS += srcs/events/key_events
+PATH_SRCS += srcs/events
 
 # srcs
 
@@ -32,6 +35,21 @@ SRCS += free_model.c
 # srcs/get_matrix
 
 SRCS += get_matrix_from_model.c
+
+# srcs/print_matrix
+
+SRCS += print_matrix.c
+SRCS += print_matrix_with_mlx.c
+SRCS += setup_mlx.c
+SRCS += img_pix_put.c
+
+# srcs/events/key_events
+
+SRCS += key_events.c
+
+# srcs/events
+
+SRCS += close_window.c
 
 vpath %.c $(PATH_SRCS)
 
@@ -64,7 +82,7 @@ CFLAGS += -Werror
 
 LINKS += -Lmlx-linux
 LINKS += -L/usr/lib
-LINKS += -1Xext
+LINKS += -lXext
 LINKS += -lX11
 LINKS += -lm
 LINKS += -lz
@@ -75,7 +93,7 @@ LINKS += -fPIE
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(LIB_MLX) $(OBJS)
-	$(CC) $(CFLAGS) $(LINKS) $(OBJS) -o $(NAME) $(LIBFT) $(INCLUDES)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(LIB_MLX) $(INCLUDES) $(LINKS)
 
 $(OBJS): $(PATH_OBJS)%.o: %.c $(HEADERS)
 		@mkdir -p $(PATH_OBJS)
@@ -90,6 +108,7 @@ $(LIB_MLX):
 clean:
 	$(RM) -r $(PATH_OBJS)
 	$(MAKE) -C $(LIBFT_FOLDER) clean
+	$(MAKE) -C $(MINILIBX_FOLDER) clean
 
 fclean: clean
 	$(RM) $(NAME)

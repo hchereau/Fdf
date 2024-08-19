@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_matrix_with_mlx.c                            :+:      :+:    :+:   */
+/*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/18 18:45:57 by imback            #+#    #+#             */
-/*   Updated: 2024/08/19 09:26:40 by imback           ###   ########.fr       */
+/*   Created: 2024/08/19 11:06:47 by imback            #+#    #+#             */
+/*   Updated: 2024/08/19 11:26:13 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_state	print_matrix_with_mlx(t_matrix *matrix)
+int	key_hook(int keycode, t_display *display, t_matrix *matrix)
 {
-	t_display	display;
-	t_img		img;
-
-	setup_mlx(&display, &img);
-	print_matrix(matrix, &display, &img);
+	if (keycode == ESC_KEY)
+	{
+		close_window(display, matrix);
+	}
+	return (success);
 }
