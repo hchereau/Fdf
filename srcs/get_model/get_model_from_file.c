@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:21:48 by imback            #+#    #+#             */
-/*   Updated: 2024/08/19 14:03:56 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/21 16:01:03 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static void	refresh_line(char **line, int fd)
 static t_state	fill_model(t_model *model, int len_split_line,
 	char **line, int fd)
 {
-	t_state	is_valid_line;
-	int		i;
+	t_state		is_valid_line;
+	size_t		i;
 
 	is_valid_line = success;
 	i = 0;

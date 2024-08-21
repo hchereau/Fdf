@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 10:39:54 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 12:29:26 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/21 16:02:09 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	center_points(t_center *center, t_display *display)
 
 void	center(t_display *display)
 {
-	int			x;
-	int			y;
+	size_t		x;
+	size_t		y;
 	t_center	center;
 
 	center_points(&center, display);

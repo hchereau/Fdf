@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 09:13:01 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 12:30:20 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/21 16:03:24 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ void	events(t_display *display)
 			display->matrix->rows, display->matrix->cols);
 	add_zoom(display);
 	center(display);
+	isometric(display);
 	refresh_window(display);
 }

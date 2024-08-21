@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 12:17:51 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 11:42:30 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/21 16:00:06 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_matrix(t_matrix *matrix)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < matrix->rows)
@@ -27,7 +27,7 @@ void	free_matrix(t_matrix *matrix)
 
 void	free_cp_matrix(t_matrix *matrix)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < matrix->rows)
@@ -40,7 +40,7 @@ void	free_cp_matrix(t_matrix *matrix)
 
 void	free_model(t_model *model)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < model->rows)

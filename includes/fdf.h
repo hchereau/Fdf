@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 12:29:37 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/21 16:00:44 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 
 # include <unistd.h>
+# include <math.h>
 # include <errno.h>
 # include <string.h>
 # include <stdio.h>
@@ -24,15 +25,22 @@
 # define ERROR_FILE ENOENT
 # define END_GNL 0
 
-# define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 800
+
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
 # define WHITE 0xFFFFFF
 # define ERROR_MAIN 1
-# define DISTANCE 10
+# define DISTANCE 5
 # define ZOOM 1
 # define ESC_KEY 65307
 # define PLUS_KEY 65451
 # define MINUS_KEY 65453
+# define Q_KEY 113
+# define E_KEY 101
+# define ANGLE_ROTATE 10
 
 
 typedef enum e_state {error = -1, success}	t_state;
@@ -52,8 +60,8 @@ typedef struct s_center
 typedef struct s_model
 {
 	int		**matrix;
-	int		rows;
-	int		cols;
+	size_t	rows;
+	size_t	cols;
 }	t_model;
 
 typedef struct s_img
@@ -77,8 +85,8 @@ typedef struct s_matrix
 {
 	t_point	**points;
 	t_point	**cp_points;
-	int		rows;
-	int		cols;
+	size_t		rows;
+	size_t		cols;
 }	t_matrix;
 
 typedef struct s_display
@@ -88,6 +96,7 @@ typedef struct s_display
 	t_matrix	*matrix;
 	t_img		*img;
 	size_t		zoom;
+	size_t		angle;
 	t_center	*center;
 }	t_display;
 
@@ -113,4 +122,5 @@ void	events(t_display *display);
 void	center_points(t_center *center, t_display *display);
 void	add_zoom(t_display *display);
 void	center(t_display *display);
+void	isometric(t_display	*display);
 #endif

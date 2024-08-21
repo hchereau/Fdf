@@ -55,6 +55,7 @@ SRCS += close_window.c
 SRCS += events.c
 SRCS += center.c
 SRCS += zoom.c
+SRCS += isometric.c
 
 vpath %.c $(PATH_SRCS)
 

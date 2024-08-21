@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:21:33 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 12:12:21 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/21 16:02:31 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	add_zoom(t_display *display)
 {
-	int			x;
-	int			y;
+	size_t		x;
+	size_t		y;
 	t_center	center_zoom;
 
 	y = 0;

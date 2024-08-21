@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:34:12 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 10:11:23 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/21 16:01:20 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static t_state	init_matrix(t_matrix *matrix, t_model *model)
 
 static t_state	add_points(t_matrix *matrix, t_model *model)
 {
-	int	x;
-	int	y;
+	size_t	x;
+	size_t	y;
 
 	x = 0;
 	y = 0;
