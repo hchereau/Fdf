@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 16:00:44 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/21 17:29:19 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
+# define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 600
 # define WHITE 0xFFFFFF
 # define ERROR_MAIN 1
 # define DISTANCE 5

@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:32:16 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 16:23:20 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/21 20:23:55 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	fill_image(t_point **points, t_display *display)
 
 void	fill_window(t_display *display)
 {
-	center(display);
 	isometric(display);
+	center(display);
 	fill_image(display->matrix->points, display);
 	mlx_put_image_to_window(display->p_mlx, display->p_win,
 		display->img->img, 0, 0);
