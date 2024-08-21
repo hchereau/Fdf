@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_matrix_with_mlx.c                            :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/18 18:45:57 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 10:12:17 by imback           ###   ########.fr       */
+/*   Created: 2024/08/21 09:13:01 by imback            #+#    #+#             */
+/*   Updated: 2024/08/21 12:30:20 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	print_matrix_with_mlx(t_display *display)
+void	events(t_display *display)
 {
-	setup_mlx(display);
-	display->matrix->cp_points = copy_points(display->matrix->points,
-			display->matrix->rows,
-			display->matrix->cols);
-	fill_window(display);
+	free_matrix(display->matrix);
+	display->matrix->points = copy_points(display->matrix->cp_points,
+			display->matrix->rows, display->matrix->cols);
+	add_zoom(display);
+	center(display);
+	refresh_window(display);
 }

@@ -35,13 +35,15 @@ SRCS += free_model.c
 # srcs/get_matrix
 
 SRCS += get_matrix_from_model.c
+SRCS += cp_matrix.c
 
 # srcs/print_matrix
 
-SRCS += print_matrix.c
+SRCS += fill_window.c
 SRCS += print_matrix_with_mlx.c
 SRCS += setup_mlx.c
 SRCS += img_pix_put.c
+SRCS += refresh_window.c
 
 # srcs/events/key_events
 
@@ -50,6 +52,9 @@ SRCS += key_events.c
 # srcs/events
 
 SRCS += close_window.c
+SRCS += events.c
+SRCS += center.c
+SRCS += zoom.c
 
 vpath %.c $(PATH_SRCS)
 

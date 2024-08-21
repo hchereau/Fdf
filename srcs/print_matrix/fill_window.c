@@ -1,40 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_matrix.c                                     :+:      :+:    :+:   */
+/*   fill_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:32:16 by imback            #+#    #+#             */
-/*   Updated: 2024/08/19 16:01:08 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/21 12:31:23 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	print_row(t_point *points, int cols, t_img *img)
+void	fill_image(t_point **points, t_display *display)
 {
 	int	x;
-
-	x = 0;
-	while (x < cols)
-	{
-		img_pix_put(img, points[x].x, points[x].y, points[x].color);
-		++x;
-	}
-}
-
-void	print_matrix(t_display *display, t_img *img)
-{
 	int	y;
 
 	y = 0;
 	while (y < display->matrix->rows)
 	{
-		print_row(display->matrix->points[y], display->matrix->cols, img);
+		x = 0;
+		while (x < display->matrix->cols)
+		{
+			if (points[y][x].x <= WINDOW_WIDTH && points[y][x].x >= 0
+				&& points[y][x].y <= WINDOW_HEIGHT && points[y][x].y >= 0)
+				img_pix_put(display->img, points[y][x].x, points[y][x].y,
+					points[y][x].color);
+			++x;
+		}
 		++y;
 	}
-	mlx_put_image_to_window(display->p_mlx, display->p_win, img->img, 0, 0);
+}
+
+void	fill_window(t_display *display)
+{
+	center(display);
+	fill_image(display->matrix->points, display);
+	mlx_put_image_to_window(display->p_mlx, display->p_win,
+		display->img->img, 0, 0);
 	mlx_key_hook(display->p_win, key_hook, display);
 	mlx_loop(display->p_mlx);
 }

@@ -1,52 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_model.c                                       :+:      :+:    :+:   */
+/*   cp_matrix.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 12:17:51 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 11:42:30 by imback           ###   ########.fr       */
+/*   Created: 2024/08/21 09:29:42 by imback            #+#    #+#             */
+/*   Updated: 2024/08/21 09:29:54 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	free_matrix(t_matrix *matrix)
+t_point	**copy_points(t_point **points, int rows, int cols)
 {
-	int	i;
+	t_point	**cp_points;
+	int		i;
+	int		j;
 
+	cp_points = (t_point **)malloc(sizeof(t_point *) * rows);
+	if (!cp_points)
+		return (NULL);
 	i = 0;
-	while (i < matrix->rows)
+	while (i < rows)
 	{
-		free(matrix->points[i]);
+		cp_points[i] = (t_point *)malloc(sizeof(t_point) * cols);
+		if (!cp_points[i])
+			return (NULL);
+		j = 0;
+		while (j < cols)
+		{
+			cp_points[i][j] = points[i][j];
+			j++;
+		}
 		i++;
 	}
-	free(matrix->points);
-}
-
-void	free_cp_matrix(t_matrix *matrix)
-{
-	int	i;
-
-	i = 0;
-	while (i < matrix->rows)
-	{
-		free(matrix->cp_points[i]);
-		i++;
-	}
-	free(matrix->cp_points);
-}
-
-void	free_model(t_model *model)
-{
-	int	i;
-
-	i = 0;
-	while (i < model->rows)
-	{
-		free(model->matrix[i]);
-		i++;
-	}
-	free(model->matrix);
+	return (cp_points);
 }

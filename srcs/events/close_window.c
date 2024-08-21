@@ -6,20 +6,27 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:21:25 by imback            #+#    #+#             */
-/*   Updated: 2024/08/19 17:03:07 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/21 11:48:15 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	close_window(t_display *display)
+static void	free_display(t_display *display)
 {
 	free_matrix(display->matrix);
-	mlx_destroy_window(display->p_mlx, display->p_win);
-	mlx_destroy_display(display->p_mlx);
+	free_cp_matrix(display->matrix);
+	free(display->matrix);
 	free(display->p_mlx);
-	exit(0);
+	free(display->img->img);
+	free(display->img);
 }
 
-/* besoin de free image mais j'ai aucune version propre qui me vient a
-l'esprit pour l'instant*/
+
+void	close_window(t_display *display)
+{
+	mlx_destroy_window(display->p_mlx, display->p_win);
+	mlx_destroy_display(display->p_mlx);
+	free_display(display);
+	exit(0);
+}
