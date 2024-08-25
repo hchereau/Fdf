@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 17:29:19 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/25 17:15:04 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,44 @@
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
-# define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
 # define WHITE 0xFFFFFF
 # define ERROR_MAIN 1
-# define DISTANCE 5
+# define DISTANCE 50
+# define HEIGHT_DIST 0.8
 # define ZOOM 1
 # define ESC_KEY 65307
 # define PLUS_KEY 65451
 # define MINUS_KEY 65453
 # define Q_KEY 113
 # define E_KEY 101
-# define ANGLE_ROTATE 10
+# define W_KEY 119
+# define S_KEY 115
+# define A_KEY 97
+# define D_KEY 100
+# define ANGLE_ROTATE 0.05
+# define HEXA_BASE "0123456789ABCDEF"
 
 
 typedef enum e_state {error = -1, success}	t_state;
 
 typedef struct s_center
 {
-	size_t	y_max;
-	size_t	x_max;
-	size_t	y_min;
-	size_t	x_min;
-	size_t	x_center;
-	size_t	y_center;
-	size_t	x_offset;
-	size_t	y_offset;
+	double	y_max;
+	double	x_max;
+	double	y_min;
+	double	x_min;
+	double	x_center;
+	double	y_center;
+	double	x_offset;
+	double	y_offset;
 }	t_center;
 
 typedef struct s_model
 {
 	int		**matrix;
+	int		**color;
 	size_t	rows;
 	size_t	cols;
 }	t_model;
@@ -75,18 +82,18 @@ typedef struct s_img
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int	z;
-	int	color;
+	int		x;
+	int		y;
+	double	z;
+	int		color;
 }	t_point;
 
 typedef struct s_matrix
 {
 	t_point	**points;
 	t_point	**cp_points;
-	size_t		rows;
-	size_t		cols;
+	size_t	rows;
+	size_t	cols;
 }	t_matrix;
 
 typedef struct s_display
@@ -95,10 +102,25 @@ typedef struct s_display
 	void		*p_win;
 	t_matrix	*matrix;
 	t_img		*img;
-	size_t		zoom;
-	size_t		angle;
+	double		zoom;
+	double		angle;
 	t_center	*center;
 }	t_display;
+
+typedef struct s_segment
+{
+	int		dx;
+	int		dy;
+	int		sx;
+	int		sy;
+	int		err;
+	int		e2;
+	int		start_color;
+	int		end_color;
+	int		start_x;
+	int		start_y;
+}	t_segment;
+
 
 t_state	get_model(char *file, t_model *model);
 t_state	is_valid_file(char *file);
@@ -123,4 +145,5 @@ void	center_points(t_center *center, t_display *display);
 void	add_zoom(t_display *display);
 void	center(t_display *display);
 void	isometric(t_display	*display);
+void	draws_segments(t_point **points, t_display *display);
 #endif

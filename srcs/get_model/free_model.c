@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 12:17:51 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 16:00:06 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/25 14:55:22 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ void	free_model(t_model *model)
 	while (i < model->rows)
 	{
 		free(model->matrix[i]);
+		free(model->color[i]);
 		i++;
 	}
 	free(model->matrix);
+	free(model->color);
 }

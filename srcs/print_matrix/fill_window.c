@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:32:16 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 20:23:55 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/25 17:19:48 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ void	fill_image(t_point **points, t_display *display)
 		}
 		++y;
 	}
+	draws_segments(display->matrix->points, display);
 }
 
 void	fill_window(t_display *display)
 {
-	isometric(display);
+	// isometric(display);
 	center(display);
 	fill_image(display->matrix->points, display);
 	mlx_put_image_to_window(display->p_mlx, display->p_win,

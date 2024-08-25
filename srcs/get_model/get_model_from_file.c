@@ -6,35 +6,66 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:21:48 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 16:01:03 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/25 16:30:00 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+
+t_state	fill_color_and_matrix(t_model *model, int i_matrix, int i_split,
+	char *split)
+{
+	char	**split_color;
+
+	split_color = ft_split(split, ',');
+	if (split_color == NULL || count_words(split, ',') > 2)
+	{
+		ft_printf("fill_color_and_matrix: Invalid file\n");
+		free_strs(split_color);
+		return (error);
+	}
+	model->matrix[i_matrix][i_split] = ft_atoi(split_color[0]);
+	if (count_words(split, ',') == 2)
+	{
+		model->matrix[i_matrix][i_split] = ft_atoi(split_color[0]);
+		model->color[i_matrix][i_split] = ft_atoi_base(split_color[1] + 2, HEXA_BASE);
+	}
+	else
+	{
+		model->matrix[i_matrix][i_split] = ft_atoi(split_color[0]);
+		model->color[i_matrix][i_split] = 0xFFFFFF;
+	}
+	free_strs(split_color);
+	return (success);
+}
 
 static t_state	fill_model_from_line(char **line, t_model *model,
 		size_t len_split_line, int i_matrix)
 {
 	char		**split;
 	size_t		i_split;
+	t_state		state;
 
 	i_split = 0;
 	split = ft_split(*line, ' ');
+	state = success;
 	if (split == NULL || len_split_line != count_words(*line, ' '))
 		return (error);
 	model->matrix[i_matrix] = (int *)malloc(sizeof(int) * len_split_line);
-	if (model->matrix[i_matrix] == NULL)
+	model->color[i_matrix] = (int *)malloc(sizeof(int) * len_split_line);
+	if (model->matrix[i_matrix] == NULL || model->color[i_matrix] == NULL)
 	{
 		free_strs(split);
 		return (error);
 	}
-	while (split[i_split] != NULL)
+	while (split[i_split] != NULL && state == success)
 	{
-		model->matrix[i_matrix][i_split] = ft_atoi(split[i_split]);
+		state = fill_color_and_matrix(model, i_matrix, i_split, split[i_split]);
 		++i_split;
 	}
 	free_strs(split);
-	return (success);
+	return (state);
 }
 
 static void	refresh_line(char **line, int fd)
@@ -84,7 +115,8 @@ t_state	get_model_from_file(char *file, t_model *model)
 	}
 	model->rows = get_model_size(file);
 	model->matrix = (int **)malloc(sizeof(int *) * model->rows);
-	if (model->matrix == NULL)
+	model->color = (int **)malloc(sizeof(int *) * model->rows);
+	if (model->matrix == NULL || model->color == NULL)
 	{
 		ft_printf("get_model_from_file: Malloc error\n");
 		free(line);

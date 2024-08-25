@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:34:12 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 16:01:20 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/25 15:37:59 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_state	add_points(t_matrix *matrix, t_model *model)
 			matrix->points[y][x].x = DISTANCE * x;
 			matrix->points[y][x].y = DISTANCE * y;
 			matrix->points[y][x].z = model->matrix[y][x];
-			matrix->points[y][x].color = WHITE;
+			matrix->points[y][x].color = model->color[y][x];
 			++x;
 		}
 		++y;
