@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 10:39:54 by imback            #+#    #+#             */
-/*   Updated: 2024/08/22 15:36:19 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/25 22:45:26 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	center(t_display *display)
 
 	printf("center\n");
 	center_points(&center, display);
+	display->center = &center;
 	printf("\n\n");
 	y = 0;
 	while (y < display->matrix->rows)

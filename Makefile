@@ -18,6 +18,7 @@ PATH_SRCS += srcs/get_model
 PATH_SRCS += srcs/get_matrix
 PATH_SRCS += srcs/print_matrix
 PATH_SRCS += srcs/events/key_events
+PATH_SRCS += srcs/events/segments
 PATH_SRCS += srcs/events
 
 # srcs
@@ -56,7 +57,11 @@ SRCS += events.c
 SRCS += center.c
 SRCS += zoom.c
 SRCS += isometric.c
+
+# srcs/events/segments
+
 SRCS += segment.c
+SRCS += segments_color.c
 
 vpath %.c $(PATH_SRCS)
 

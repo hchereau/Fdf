@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   segments_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 09:13:01 by imback            #+#    #+#             */
-/*   Updated: 2024/08/25 22:50:03 by imback           ###   ########.fr       */
+/*   Created: 2024/08/25 21:07:50 by imback            #+#    #+#             */
+/*   Updated: 2024/08/25 21:09:21 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	events(t_display *display)
+int	choose_color(int color_start, int color_end, float t)
 {
-	free_matrix(display->matrix);
-	display->matrix->points = copy_points(display->matrix->cp_points,
-			display->matrix->rows, display->matrix->cols);
-	add_zoom(display);
-	isometric(display);
-	center(display);
-	refresh_window(display);
+	int		r;
+	int		g;
+	int		b;
+
+	r = (int)((1 - t) * ((color_start >> 16) & 0xFF)
+			+ t * ((color_end >> 16) & 0xFF));
+	g = (int)((1 - t) * ((color_start >> 8) & 0xFF)
+			+ t * ((color_end >> 8) & 0xFF));
+	b = (int)((1 - t) * (color_start & 0xFF) + t * (color_end & 0xFF));
+	return ((r << 16) | (g << 8) | b);
 }

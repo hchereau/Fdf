@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/08/25 17:15:04 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/25 22:31:32 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define WINDOW_HEIGHT 1080
 # define WHITE 0xFFFFFF
 # define ERROR_MAIN 1
-# define DISTANCE 50
-# define HEIGHT_DIST 0.8
+# define DISTANCE 1
+# define HEIGHT_DIST 0.08
 # define ZOOM 1
 # define ESC_KEY 65307
 # define PLUS_KEY 65451
@@ -109,16 +109,16 @@ typedef struct s_display
 
 typedef struct s_segment
 {
-	int		dx;
-	int		dy;
-	int		sx;
-	int		sy;
-	int		err;
-	int		e2;
-	int		start_color;
-	int		end_color;
-	int		start_x;
-	int		start_y;
+	double		dx;
+	double		dy;
+	double		sx;
+	double		sy;
+	double		err;
+	double		e2;
+	double		start_color;
+	double		end_color;
+	double		start_x;
+	double		start_y;
 }	t_segment;
 
 
@@ -146,4 +146,5 @@ void	add_zoom(t_display *display);
 void	center(t_display *display);
 void	isometric(t_display	*display);
 void	draws_segments(t_point **points, t_display *display);
+int		choose_color(int color_start, int color_end, float t);
 #endif

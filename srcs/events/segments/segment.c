@@ -6,26 +6,11 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 16:27:50 by imback            #+#    #+#             */
-/*   Updated: 2024/08/25 17:12:44 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/25 21:57:41 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-
-static int	interpolate_color(int color_start, int color_end, float t)
-{
-	int		r;
-	int		g;
-	int		b;
-
-	r = (int)((1 - t) * ((color_start >> 16) & 0xFF)
-			+ t * ((color_end >> 16) & 0xFF));
-	g = (int)((1 - t) * ((color_start >> 8) & 0xFF)
-			+ t * ((color_end >> 8) & 0xFF));
-	b = (int)((1 - t) * (color_start & 0xFF) + t * (color_end & 0xFF));
-	return ((r << 16) | (g << 8) | b);
-}
 
 static void	place_pixel(t_display *display, t_point p0)
 {
@@ -46,8 +31,9 @@ static void	place_point(t_display *display, t_point p0, t_point p1,
 			t = (float)(p0.x - segment->start_x) / segment->dx;
 		else
 			t = (float)(p0.y - segment->start_y) / segment->dy;
-		p0.color = interpolate_color(segment->start_color, segment->end_color,
-				t);
+		if (t < 0)
+			t = t * -1;
+		p0.color = choose_color(segment->start_color, segment->end_color, t);
 		place_pixel(display, p0);
 		e2 = 2 * segment->err;
 		if (e2 > -segment->dy)
@@ -78,8 +64,8 @@ static void	get_data_segment(t_point p0, t_point p1, t_segment *segment)
 	segment->err = segment->dx - segment->dy;
 	segment->start_color = p0.color;
 	segment->end_color = p1.color;
-    segment->start_x = p0.x;
-    segment->start_y = p0.y;
+	segment->start_x = p0.x;
+	segment->start_y = p0.y;
 }
 
 static void	draw_segment_between_points(t_point p0, t_point p1,
