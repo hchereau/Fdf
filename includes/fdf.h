@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/08/26 15:36:10 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/26 18:34:08 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@
 # define S_KEY 115
 # define A_KEY 97
 # define D_KEY 100
-# define ANGLE_ROTATE 1
+# define ANGLE_ROTATE 5
 # define ANGLE_ROTATE_HORIZONTAL 273
+# define ANGLE_ROTATE_VERTICAL 0
 # define ZOOOM 1
 # define HEXA_BASE "0123456789ABCDEF"
 
@@ -106,6 +107,7 @@ typedef struct s_display
 	t_img		*img;
 	double		zoom;
 	double		horizontal_angle;
+	double		vertical_angle;
 	t_center	*center;
 }	t_display;
 
@@ -150,4 +152,5 @@ void	isometric(t_display	*display);
 void	draws_segments(t_point **points, t_display *display);
 int		choose_color(int color_start, int color_end, float t);
 void	horizontal_rotate(t_display *display);
+void	vertical_rotate(t_display *display);
 #endif

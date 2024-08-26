@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:06:47 by imback            #+#    #+#             */
-/*   Updated: 2024/08/26 14:08:04 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/26 18:31:10 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,25 @@ static void	zoom_key(int keycode, t_display *display)
 	}
 }
 
-static void	rotate_key(int keycode, t_display *display)
+static void	rotate_vertical_key(int keycode, t_display *display)
 {
-	if (keycode == A_KEY)
+	if (keycode == W_KEY)
+	{
+		display->vertical_angle += ANGLE_ROTATE;
+	}
+	else if (keycode == S_KEY)
+	{
+		display->vertical_angle -= ANGLE_ROTATE;
+	}
+}
+
+static void	rotate_horizontal_key(int keycode, t_display *display)
+{
+	if (keycode == D_KEY)
 	{
 		display->horizontal_angle += ANGLE_ROTATE;
 	}
-	else if (keycode == D_KEY)
+	else if (keycode == A_KEY)
 	{
 		display->horizontal_angle -= ANGLE_ROTATE;
 	}
@@ -39,8 +51,8 @@ static void	rotate_key(int keycode, t_display *display)
 static void	key_events(int keycode, t_display *display)
 {
 	zoom_key(keycode, display);
-	rotate_key(keycode, display);
-	rotate_key(keycode, display);
+	rotate_horizontal_key(keycode, display);
+	rotate_vertical_key(keycode, display);
 }
 
 int	key_hook(int keycode, t_display *display)
