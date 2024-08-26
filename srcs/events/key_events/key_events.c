@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:06:47 by imback            #+#    #+#             */
-/*   Updated: 2024/08/25 15:44:10 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/26 14:08:04 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,20 @@ static void	zoom_key(int keycode, t_display *display)
 
 static void	rotate_key(int keycode, t_display *display)
 {
-	if (keycode == Q_KEY)
+	if (keycode == A_KEY)
 	{
-		display->angle += ANGLE_ROTATE;
+		display->horizontal_angle += ANGLE_ROTATE;
 	}
-	else if (keycode == E_KEY)
+	else if (keycode == D_KEY)
 	{
-		display->angle -= ANGLE_ROTATE;
+		display->horizontal_angle -= ANGLE_ROTATE;
 	}
 }
 
 static void	key_events(int keycode, t_display *display)
 {
 	zoom_key(keycode, display);
+	rotate_key(keycode, display);
 	rotate_key(keycode, display);
 }
 

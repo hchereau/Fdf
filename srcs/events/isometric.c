@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:53:48 by imback            #+#    #+#             */
-/*   Updated: 2024/08/25 22:59:31 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/26 15:26:04 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	isometric(t_display *display)
 			z_point = display->matrix->points[y][x].z;
 			display->matrix->points[y][x].x = (x_point - y_point) * cos(theta);
 			display->matrix->points[y][x].y = (x_point + y_point) * sin(theta)
-				- (z_point * (HEIGHT_DIST * display->zoom));
+				- z_point;
 			++x;
 		}
 		++y;

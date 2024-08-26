@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/08/25 22:31:32 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/26 15:36:10 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define WINDOW_HEIGHT 1080
 # define WHITE 0xFFFFFF
 # define ERROR_MAIN 1
-# define DISTANCE 1
-# define HEIGHT_DIST 0.08
+# define DISTANCE 10
+# define HEIGHT_DIST 1
 # define ZOOM 1
 # define ESC_KEY 65307
 # define PLUS_KEY 65451
@@ -45,7 +45,9 @@
 # define S_KEY 115
 # define A_KEY 97
 # define D_KEY 100
-# define ANGLE_ROTATE 0.05
+# define ANGLE_ROTATE 1
+# define ANGLE_ROTATE_HORIZONTAL 273
+# define ZOOOM 1
 # define HEXA_BASE "0123456789ABCDEF"
 
 
@@ -103,7 +105,7 @@ typedef struct s_display
 	t_matrix	*matrix;
 	t_img		*img;
 	double		zoom;
-	double		angle;
+	double		horizontal_angle;
 	t_center	*center;
 }	t_display;
 
@@ -147,4 +149,5 @@ void	center(t_display *display);
 void	isometric(t_display	*display);
 void	draws_segments(t_point **points, t_display *display);
 int		choose_color(int color_start, int color_end, float t);
+void	horizontal_rotate(t_display *display);
 #endif

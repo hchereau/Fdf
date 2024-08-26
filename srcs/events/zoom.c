@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:21:33 by imback            #+#    #+#             */
-/*   Updated: 2024/08/22 11:35:57 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/26 15:30:04 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ void	add_zoom(t_display *display)
 					* display->zoom) + center_zoom.x_center;
 			display->matrix->points[y][x].y += (center_zoom.y_offset
 					* display->zoom) + center_zoom.y_center;
+			printf("zoom: %f\n", display->zoom);
+			if (display->zoom == 1)
+				display->matrix->points[y][x].z *= display->zoom * 2;
+			else if (display->zoom != 0)
+				display->matrix->points[y][x].z *= display->zoom;
 			++x;
 		}
 		++y;

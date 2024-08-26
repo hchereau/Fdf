@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:56:21 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 15:41:47 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/26 15:36:27 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	setup_img(t_display *display)
 
 static void	setup_values(t_display *display)
 {
-	display->zoom = 1;
-	display->angle = 0.8;
+	display->zoom = ZOOM;
+	display->horizontal_angle = ANGLE_ROTATE_HORIZONTAL;
 }
 
 void	setup_mlx(t_display *display)

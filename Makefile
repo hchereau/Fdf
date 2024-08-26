@@ -57,6 +57,7 @@ SRCS += events.c
 SRCS += center.c
 SRCS += zoom.c
 SRCS += isometric.c
+SRCS += rotate.c
 
 # srcs/events/segments
 
