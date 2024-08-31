@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 09:36:47 by imback            #+#    #+#             */
-/*   Updated: 2024/08/24 11:13:28 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/31 17:51:32 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	refresh_window(t_display *display)
 	mlx_destroy_image(display->p_mlx, display->img->img);
 	display->img->img = mlx_new_image(display->p_mlx, WINDOW_WIDTH,
 			WINDOW_HEIGHT);
-
 	if (display->img->img == NULL)
 	{
 		close_window(display);

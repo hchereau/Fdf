@@ -6,12 +6,11 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:21:48 by imback            #+#    #+#             */
-/*   Updated: 2024/08/25 16:30:00 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/31 17:54:35 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
 
 t_state	fill_color_and_matrix(t_model *model, int i_matrix, int i_split,
 	char *split)
@@ -29,7 +28,8 @@ t_state	fill_color_and_matrix(t_model *model, int i_matrix, int i_split,
 	if (count_words(split, ',') == 2)
 	{
 		model->matrix[i_matrix][i_split] = ft_atoi(split_color[0]);
-		model->color[i_matrix][i_split] = ft_atoi_base(split_color[1] + 2, HEXA_BASE);
+		model->color[i_matrix][i_split] = ft_atoi_base(split_color[1]
+				+ 2, HEXA_BASE);
 	}
 	else
 	{
@@ -126,23 +126,4 @@ t_state	get_model_from_file(char *file, t_model *model)
 	state = fill_model(model, model->cols, &line, fd);
 	close(fd);
 	return (state);
-}
-
-int	get_model_size(char *file)
-{
-	int			size;
-	const int	fd = open(file, O_RDONLY);
-	char		*line;
-
-	size = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		size++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	free(line);
-	return (size);
 }

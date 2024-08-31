@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:21:25 by imback            #+#    #+#             */
-/*   Updated: 2024/08/21 14:20:31 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/31 17:10:52 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ static void	free_display(t_display *display)
 {
 	free_matrix(display->matrix);
 	free_cp_matrix(display->matrix);
-	// free(display->matrix);
 	free(display->p_mlx);
 	free(display->img->img);
 	free(display->img);
 }
-
 
 void	close_window(t_display *display)
 {

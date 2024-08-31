@@ -32,6 +32,7 @@ SRCS += get_model.c
 SRCS += get_model_from_file.c
 SRCS += is_valid_file.c
 SRCS += free_model.c
+SRCS += get_model_size.c
 
 # srcs/get_matrix
 
@@ -49,6 +50,7 @@ SRCS += refresh_window.c
 # srcs/events/key_events
 
 SRCS += key_events.c
+SRCS += key_hook.c
 
 # srcs/events
 

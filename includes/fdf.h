@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/08/26 18:34:08 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/31 17:55:40 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 
 # define ERROR_FILE ENOENT
 # define END_GNL 0
-
-
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
@@ -46,11 +44,11 @@
 # define A_KEY 97
 # define D_KEY 100
 # define ANGLE_ROTATE 5
+# define ANGLE_ROTATE_ISOMETRIC 0.1
 # define ANGLE_ROTATE_HORIZONTAL 273
 # define ANGLE_ROTATE_VERTICAL 0
 # define ZOOOM 1
 # define HEXA_BASE "0123456789ABCDEF"
-
 
 typedef enum e_state {error = -1, success}	t_state;
 
@@ -108,6 +106,7 @@ typedef struct s_display
 	double		zoom;
 	double		horizontal_angle;
 	double		vertical_angle;
+	double		isometric_angle;
 	t_center	*center;
 }	t_display;
 
@@ -124,7 +123,6 @@ typedef struct s_segment
 	double		start_x;
 	double		start_y;
 }	t_segment;
-
 
 t_state	get_model(char *file, t_model *model);
 t_state	is_valid_file(char *file);
@@ -153,4 +151,5 @@ void	draws_segments(t_point **points, t_display *display);
 int		choose_color(int color_start, int color_end, float t);
 void	horizontal_rotate(t_display *display);
 void	vertical_rotate(t_display *display);
+void	key_events(int keycode, t_display *display);
 #endif

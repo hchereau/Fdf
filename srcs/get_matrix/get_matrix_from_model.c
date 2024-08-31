@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:34:12 by imback            #+#    #+#             */
-/*   Updated: 2024/08/25 15:37:59 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/31 17:10:17 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static t_state	init_matrix(t_matrix *matrix, t_model *model)
 		return (error);
 	return (success);
 }
-
 
 static t_state	add_points(t_matrix *matrix, t_model *model)
 {

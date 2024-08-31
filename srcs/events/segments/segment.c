@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 16:27:50 by imback            #+#    #+#             */
-/*   Updated: 2024/08/25 21:57:41 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/31 17:47:12 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	place_pixel(t_display *display, t_point p0)
 {
 	if (p0.x >= 0 && p0.x < WINDOW_WIDTH && p0.y >= 0 && p0.y < WINDOW_HEIGHT)
 		img_pix_put(display->img, p0.x, p0.y, p0.color);
-
 }
 
 static void	place_point(t_display *display, t_point p0, t_point p1,

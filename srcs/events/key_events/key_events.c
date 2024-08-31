@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:06:47 by imback            #+#    #+#             */
-/*   Updated: 2024/08/26 18:31:10 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/31 17:51:12 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ static void	zoom_key(int keycode, t_display *display)
 	else if (keycode == MINUS_KEY && display->zoom > 0)
 	{
 		display->zoom -= ZOOM;
+	}
+}
+
+static void	rotate_isometric_key(int keycode, t_display *display)
+{
+	if (keycode == Q_KEY)
+	{
+		display->isometric_angle += ANGLE_ROTATE_ISOMETRIC;
+	}
+	else if (keycode == E_KEY)
+	{
+		display->isometric_angle -= ANGLE_ROTATE_ISOMETRIC;
 	}
 }
 
@@ -48,21 +60,10 @@ static void	rotate_horizontal_key(int keycode, t_display *display)
 	}
 }
 
-static void	key_events(int keycode, t_display *display)
+void	key_events(int keycode, t_display *display)
 {
 	zoom_key(keycode, display);
+	rotate_isometric_key(keycode, display);
 	rotate_horizontal_key(keycode, display);
 	rotate_vertical_key(keycode, display);
-}
-
-int	key_hook(int keycode, t_display *display)
-{
-	printf("keycode: %d\n", keycode);
-	if (keycode == ESC_KEY)
-	{
-		close_window(display);
-	}
-	key_events(keycode, display);
-	events(display);
-	return (success);
 }

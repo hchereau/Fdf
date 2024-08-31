@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 10:39:54 by imback            #+#    #+#             */
-/*   Updated: 2024/08/25 22:45:26 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/31 17:50:52 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,7 @@ void	center_points(t_center *center, t_display *display)
 	center->y_center = (center->y_max + center->y_min) / 2;
 	center->x_offset = WINDOW_WIDTH / 2 - center->x_center;
 	center->y_offset = WINDOW_HEIGHT / 2 - center->y_center;
-
-
-	printf("x_max: %f\n x_min: %f\n", center->x_max, center->x_min);
-	printf("rows: %ld\n cols: %ld\n", nb_line, nb_cols);
-	printf("x_center: %f\n y_center: %f\n", center->x_center, center->y_center);
-	printf("x_offset: %f\n y_offset: %f\n", center->x_offset, center->y_offset);
 }
-
 
 void	center(t_display *display)
 {
@@ -40,10 +33,8 @@ void	center(t_display *display)
 	size_t		y;
 	t_center	center;
 
-	printf("center\n");
 	center_points(&center, display);
 	display->center = &center;
-	printf("\n\n");
 	y = 0;
 	while (y < display->matrix->rows)
 	{

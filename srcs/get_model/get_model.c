@@ -6,12 +6,11 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:21:16 by imback            #+#    #+#             */
-/*   Updated: 2024/08/17 12:23:35 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/31 17:52:45 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
 
 t_state	get_model(char *file, t_model *model)
 {
@@ -26,6 +25,4 @@ t_state	get_model(char *file, t_model *model)
 		}
 	}
 	return (state);
-
-
 }

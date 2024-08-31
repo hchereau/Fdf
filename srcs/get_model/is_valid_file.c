@@ -6,12 +6,11 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:15:49 by imback            #+#    #+#             */
-/*   Updated: 2024/08/15 08:50:58 by imback           ###   ########.fr       */
+/*   Updated: 2024/08/31 17:52:33 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
 
 static t_state	is_existing_file(char *file)
 {
