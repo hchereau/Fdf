@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:21:48 by imback            #+#    #+#             */
-/*   Updated: 2024/08/31 17:54:35 by imback           ###   ########.fr       */
+/*   Updated: 2024/09/01 20:39:45 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_state	fill_color_and_matrix(t_model *model, int i_matrix, int i_split,
 	char *split)
 {
-	char	**split_color;
+	char		**split_color;
 
 	split_color = ft_split(split, ',');
 	if (split_color == NULL || count_words(split, ',') > 2)
@@ -27,6 +27,7 @@ t_state	fill_color_and_matrix(t_model *model, int i_matrix, int i_split,
 	model->matrix[i_matrix][i_split] = ft_atoi(split_color[0]);
 	if (count_words(split, ',') == 2)
 	{
+		model->is_color_map = true;
 		model->matrix[i_matrix][i_split] = ft_atoi(split_color[0]);
 		model->color[i_matrix][i_split] = ft_atoi_base(split_color[1]
 				+ 2, HEXA_BASE);
@@ -34,7 +35,7 @@ t_state	fill_color_and_matrix(t_model *model, int i_matrix, int i_split,
 	else
 	{
 		model->matrix[i_matrix][i_split] = ft_atoi(split_color[0]);
-		model->color[i_matrix][i_split] = 0xFFFFFF;
+		model->color[i_matrix][i_split] = WHITE;
 	}
 	free_strs(split_color);
 	return (success);
@@ -48,6 +49,7 @@ static t_state	fill_model_from_line(char **line, t_model *model,
 	t_state		state;
 
 	i_split = 0;
+	model->is_color_map = false;
 	split = ft_split(*line, ' ');
 	state = success;
 	if (split == NULL || len_split_line != count_words(*line, ' '))

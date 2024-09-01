@@ -6,7 +6,7 @@
 /*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/08/31 17:55:40 by imback           ###   ########.fr       */
+/*   Updated: 2024/09/01 18:25:54 by imback           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define WHITE 0xFFFFFF
+# define RED 0xFF0000
+# define GREEN 0x00FF00
+# define YELLOW 0xFFFF00
 # define ERROR_MAIN 1
 # define DISTANCE 10
 # define HEIGHT_DIST 1
@@ -64,12 +67,20 @@ typedef struct s_center
 	double	y_offset;
 }	t_center;
 
+typedef struct s_extremum
+{
+	int	min;
+	int	max;
+}	t_extremum;
+
 typedef struct s_model
 {
-	int		**matrix;
-	int		**color;
-	size_t	rows;
-	size_t	cols;
+	int			**matrix;
+	int			**color;
+	size_t		rows;
+	size_t		cols;
+	t_extremum	*extremum;
+	bool	is_color_map;
 }	t_model;
 
 typedef struct s_img
@@ -108,6 +119,7 @@ typedef struct s_display
 	double		vertical_angle;
 	double		isometric_angle;
 	t_center	*center;
+	bool		is_color_map;
 }	t_display;
 
 typedef struct s_segment
