@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:32:16 by imback            #+#    #+#             */
-/*   Updated: 2024/09/06 16:18:13 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:49:33 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	fill_image(t_point **points, t_display *display)
 
 void	fill_window(t_display *display)
 {
-	isometric(display);
-	center(display);
+	// // isometric(display);
+	// center(display);
 	fill_image(display->matrix->points, display);
 	mlx_put_image_to_window(display->p_mlx, display->p_win,
 		display->img->img, 0, 0);

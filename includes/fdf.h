@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/09/06 16:10:44 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:39:18 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_model
 	size_t		rows;
 	size_t		cols;
 	t_extremum	*extremum;
-	bool	is_color_map;
+	bool		is_color_map;
 }	t_model;
 
 typedef struct s_img
@@ -136,6 +136,8 @@ typedef struct s_segment
 	double		start_y;
 }	t_segment;
 
+
+
 t_state	get_model(char *file, t_model *model);
 t_state	is_valid_file(char *file);
 t_state	get_model_from_file(char *file, t_model *model);
@@ -156,13 +158,13 @@ t_point	**copy_points(t_point **points, int rows, int cols);
 void	refresh_window(t_display *display);
 void	events(t_display *display);
 void	center_points(t_center *center, t_display *display);
-void	add_zoom(t_display *display);
+void	add_zoom(t_display *display, t_center *center, size_t y, size_t x);
 void	center(t_display *display);
-void	isometric(t_display	*display);
+void	isometric(t_display	*display, size_t y, size_t x);
 void	draws_segments(t_point **points, t_display *display);
 int		choose_color(int color_start, int color_end, float t);
-void	horizontal_rotate(t_display *display);
-void	vertical_rotate(t_display *display);
+void	horizontal_rotate(t_display *display, size_t y, size_t x);
+void	vertical_rotate(t_display *display, size_t y, size_t x);
 void	key_events(int keycode, t_display *display);
 int		get_color_from_height(int heigh, t_extremum *extremum);
 void	get_color(t_matrix *matrix, t_model *model, size_t x, size_t y);
