@@ -38,6 +38,7 @@ SRCS += get_model_size.c
 
 SRCS += get_matrix_from_model.c
 SRCS += cp_matrix.c
+SRCS += get_color_matrix.c
 
 # srcs/print_matrix
 
@@ -92,6 +93,7 @@ CC := cc
 CFLAGS += -Wall
 CFLAGS += -Wextra
 CFLAGS += -Werror
+CFLAGS += -O2
 
 ### LINKING ####################################################################
 

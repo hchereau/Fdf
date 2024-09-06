@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zoom.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:21:33 by imback            #+#    #+#             */
-/*   Updated: 2024/08/31 17:44:10 by imback           ###   ########.fr       */
+/*   Updated: 2024/09/06 16:09:34 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	add_zoom(t_display *display)
 					* display->zoom) + center_zoom.x_center;
 			display->matrix->points[y][x].y += (center_zoom.y_offset
 					* display->zoom) + center_zoom.y_center;
-			if (display->zoom == 1)
-				display->matrix->points[y][x].z *= display->zoom * 2;
-			else if (display->zoom != 0)
-				display->matrix->points[y][x].z *= display->zoom;
+			display->matrix->points[y][x].z *= display->zoom;
 			++x;
 		}
 		++y;

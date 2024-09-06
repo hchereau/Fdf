@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_matrix_from_model.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:34:12 by imback            #+#    #+#             */
-/*   Updated: 2024/09/01 20:46:53 by imback           ###   ########.fr       */
+/*   Updated: 2024/09/06 14:44:32 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,6 @@ void	get_extremum(t_model *model)
 	}
 }
 
-
-int	get_color_from_height(int heigh, t_extremum *extremum)
-{
-	if (heigh == extremum->min)
-		return (GREEN);
-	else if (heigh == extremum->max)
-		return (RED);
-	else
-		return (YELLOW);
-}
-
-void	get_color(t_matrix *matrix, t_model *model, size_t x, size_t y)
-{
-	if (model->is_color_map == false)
-	{
-		matrix->points[y][x].color = get_color_from_height(model->matrix[y][x], model->extremum);
-		printf("color: %d\n", matrix->points[y][x].color);
-	}
-	else
-	{
-		matrix->points[y][x].color = model->color[y][x];
-	}
-}
-
 static t_state	add_points(t_matrix *matrix, t_model *model)
 {
 	size_t	x;
@@ -96,7 +72,8 @@ static t_state	add_points(t_matrix *matrix, t_model *model)
 		}
 		++y;
 	}
-	free(model->extremum);
+	if (model->is_color_map == false)
+		free(model->extremum);
 	return (success);
 }
 

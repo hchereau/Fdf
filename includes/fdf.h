@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/09/01 18:25:54 by imback           ###   ########.fr       */
+/*   Updated: 2024/09/06 16:10:44 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,4 +164,6 @@ int		choose_color(int color_start, int color_end, float t);
 void	horizontal_rotate(t_display *display);
 void	vertical_rotate(t_display *display);
 void	key_events(int keycode, t_display *display);
+int		get_color_from_height(int heigh, t_extremum *extremum);
+void	get_color(t_matrix *matrix, t_model *model, size_t x, size_t y);
 #endif
