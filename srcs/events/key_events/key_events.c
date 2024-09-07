@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:06:47 by imback            #+#    #+#             */
-/*   Updated: 2024/09/06 14:57:51 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/07 11:09:42 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ static void	rotate_vertical_key(int keycode, t_display *display)
 {
 	if (keycode == W_KEY)
 	{
-		display->vertical_angle += ANGLE_ROTATE;
+		display->vertical_angle -= ANGLE_ROTATE;
 	}
 	else if (keycode == S_KEY)
 	{
-		display->vertical_angle -= ANGLE_ROTATE;
+		display->vertical_angle += ANGLE_ROTATE;
 	}
 }
 
@@ -66,4 +66,6 @@ void	key_events(int keycode, t_display *display)
 	rotate_isometric_key(keycode, display);
 	rotate_horizontal_key(keycode, display);
 	rotate_vertical_key(keycode, display);
+	y_translation_key(keycode, display);
+	x_translation_key(keycode, display);
 }

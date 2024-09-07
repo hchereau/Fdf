@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 09:13:01 by imback            #+#    #+#             */
-/*   Updated: 2024/09/06 17:48:49 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/07 10:46:32 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,25 @@ void	add_events(t_display *display)
 	}
 }
 
+void	add_translations(t_display *display)
+{
+	size_t		x;
+	size_t		y;
+
+	y = 0;
+	while (y < display->matrix->rows)
+	{
+		x = 0;
+		while (x < display->matrix->cols)
+		{
+			x_translation(display, y, x);
+			y_translation(display, y, x);
+			++x;
+		}
+		++y;
+	}
+}
+
 void	events(t_display *display)
 {
 	free_matrix(display->matrix);
@@ -42,5 +61,6 @@ void	events(t_display *display)
 			display->matrix->rows, display->matrix->cols);
 	add_events(display);
 	center(display);
+	add_translations(display);
 	refresh_window(display);
 }

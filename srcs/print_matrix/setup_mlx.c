@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:56:21 by imback            #+#    #+#             */
-/*   Updated: 2024/08/31 18:02:35 by imback           ###   ########.fr       */
+/*   Updated: 2024/09/07 11:05:47 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static void	setup_values(t_display *display)
 	display->horizontal_angle = ANGLE_ROTATE_HORIZONTAL;
 	display->vertical_angle = ANGLE_ROTATE_VERTICAL;
 	display->isometric_angle = M_PI / 6;
+	display->translation_x = 0;
+	display->translation_y = 0;
 }
 
 void	setup_mlx(t_display *display)

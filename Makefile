@@ -52,6 +52,7 @@ SRCS += refresh_window.c
 
 SRCS += key_events.c
 SRCS += key_hook.c
+SRCS += utils_key_events.c
 
 # srcs/events
 
@@ -61,6 +62,7 @@ SRCS += center.c
 SRCS += zoom.c
 SRCS += isometric.c
 SRCS += rotate.c
+SRCS += translation.c
 
 # srcs/events/segments
 

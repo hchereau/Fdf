@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/09/06 17:39:18 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/07 11:10:38 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@
 # define S_KEY 115
 # define A_KEY 97
 # define D_KEY 100
+# define UP_KEY 65362
+# define DOWN_KEY 65364
+# define LEFT_KEY 65361
+# define RIGHT_KEY 65363
+# define TRANSLATION 10
 # define ANGLE_ROTATE 5
 # define ANGLE_ROTATE_ISOMETRIC 0.1
 # define ANGLE_ROTATE_HORIZONTAL 273
@@ -118,6 +123,8 @@ typedef struct s_display
 	double		horizontal_angle;
 	double		vertical_angle;
 	double		isometric_angle;
+	double		translation_x;
+	double		translation_y;
 	t_center	*center;
 	bool		is_color_map;
 }	t_display;
@@ -166,6 +173,10 @@ int		choose_color(int color_start, int color_end, float t);
 void	horizontal_rotate(t_display *display, size_t y, size_t x);
 void	vertical_rotate(t_display *display, size_t y, size_t x);
 void	key_events(int keycode, t_display *display);
+void	x_translation_key(int keycode, t_display *display);
+void	y_translation_key(int keycode, t_display *display);
 int		get_color_from_height(int heigh, t_extremum *extremum);
 void	get_color(t_matrix *matrix, t_model *model, size_t x, size_t y);
+void	x_translation(t_display *display, size_t y, size_t x);
+void	y_translation(t_display *display, size_t y, size_t x);
 #endif
