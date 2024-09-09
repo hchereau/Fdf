@@ -47,6 +47,7 @@ SRCS += print_matrix_with_mlx.c
 SRCS += setup_mlx.c
 SRCS += img_pix_put.c
 SRCS += refresh_window.c
+SRCS += fix_zoom.c
 
 # srcs/events/key_events
 

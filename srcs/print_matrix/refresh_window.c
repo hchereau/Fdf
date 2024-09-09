@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refresh_window.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 09:36:47 by imback            #+#    #+#             */
-/*   Updated: 2024/08/31 17:51:32 by imback           ###   ########.fr       */
+/*   Updated: 2024/09/09 15:13:16 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,8 @@ void	refresh_window(t_display *display)
 				&display->img->endian);
 		mlx_put_image_to_window(display->p_mlx, display->p_win,
 			display->img->img, 0, 0);
+		free_matrix(display->matrix);
+		display->matrix->points = copy_points(display->matrix->cp_points,
+				display->matrix->rows, display->matrix->cols);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 09:13:01 by imback            #+#    #+#             */
-/*   Updated: 2024/09/07 10:46:32 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:01:48 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	add_events(t_display *display)
 		while (x < display->matrix->cols)
 		{
 			add_zoom(display, &center_center, y, x);
-			isometric(display, y, x);
-			horizontal_rotate(display, y, x);
 			vertical_rotate(display, y, x);
+			horizontal_rotate(display, y, x);
+			isometric(display, y, x);
 			++x;
 		}
 		++y;

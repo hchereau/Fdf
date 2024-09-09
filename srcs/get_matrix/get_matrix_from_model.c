@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 23:34:12 by imback            #+#    #+#             */
-/*   Updated: 2024/09/06 14:44:32 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/07 13:38:31 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,18 @@ void	get_extremum(t_model *model)
 	}
 }
 
+void	get_coordinat(t_matrix *matrix, t_model *model, size_t x, size_t y)
+{
+	double	multiplier_z;
+
+	multiplier_z = DISTANCE;
+	multiplier_z /= 10;
+	matrix->points[y][x].x = DISTANCE * x;
+	matrix->points[y][x].y = DISTANCE * y;
+	matrix->points[y][x].z = model->matrix[y][x];
+	matrix->points[y][x].z *= multiplier_z;
+}
+
 static t_state	add_points(t_matrix *matrix, t_model *model)
 {
 	size_t	x;
@@ -64,9 +76,7 @@ static t_state	add_points(t_matrix *matrix, t_model *model)
 			return (error);
 		while (x < model->cols)
 		{
-			matrix->points[y][x].x = DISTANCE * x;
-			matrix->points[y][x].y = DISTANCE * y;
-			matrix->points[y][x].z = model->matrix[y][x];
+			get_coordinat(matrix, model, x, y);
 			get_color(matrix, model, x, y);
 			++x;
 		}

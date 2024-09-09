@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/09/07 11:10:38 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:31:52 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define GREEN 0x00FF00
 # define YELLOW 0xFFFF00
 # define ERROR_MAIN 1
-# define DISTANCE 10
+# define DISTANCE 1
 # define HEIGHT_DIST 1
 # define ZOOM 1
 # define ESC_KEY 65307
@@ -143,8 +143,6 @@ typedef struct s_segment
 	double		start_y;
 }	t_segment;
 
-
-
 t_state	get_model(char *file, t_model *model);
 t_state	is_valid_file(char *file);
 t_state	get_model_from_file(char *file, t_model *model);
@@ -157,7 +155,7 @@ void	fill_window(t_display *display);
 void	fill_image(t_point **points, t_display *display);
 void	img_pix_put(t_img *img, int x, int y, int color);
 void	print_matrix_with_mlx(t_display *display);
-void	close_window(t_display *display);
+int		close_window(t_display *display);
 int		key_hook(int keycode, t_display *display);
 void	free_matrix(t_matrix *matrix);
 void	free_cp_matrix(t_matrix *matrix);
@@ -179,4 +177,7 @@ int		get_color_from_height(int heigh, t_extremum *extremum);
 void	get_color(t_matrix *matrix, t_model *model, size_t x, size_t y);
 void	x_translation(t_display *display, size_t y, size_t x);
 void	y_translation(t_display *display, size_t y, size_t x);
+bool	is_good_zoom(t_display *display);
+void	fix_zoom(t_display *display);
+void	setup_points(t_display *display);
 #endif

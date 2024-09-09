@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:06:47 by imback            #+#    #+#             */
-/*   Updated: 2024/09/07 11:09:42 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:06:01 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ static void	zoom_key(int keycode, t_display *display)
 {
 	if (keycode == PLUS_KEY)
 	{
-		display->zoom += ZOOM;
+		if (display->zoom == 0)
+			display->zoom += 0.5;
+		else
+			display->zoom *= 2;
 	}
 	else if (keycode == MINUS_KEY && display->zoom > 0)
 	{
-		display->zoom -= ZOOM;
+		display->zoom /= 2;
 	}
 }
 

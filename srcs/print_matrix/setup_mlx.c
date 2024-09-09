@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:56:21 by imback            #+#    #+#             */
-/*   Updated: 2024/09/07 11:05:47 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/07 14:23:28 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void	setup_img(t_display *display)
 
 static void	setup_values(t_display *display)
 {
-	display->zoom = ZOOM;
+
+	display->zoom = 0;
 	display->horizontal_angle = ANGLE_ROTATE_HORIZONTAL;
 	display->vertical_angle = ANGLE_ROTATE_VERTICAL;
 	display->isometric_angle = M_PI / 6;
