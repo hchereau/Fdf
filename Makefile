@@ -54,6 +54,7 @@ SRCS += fix_zoom.c
 SRCS += key_events.c
 SRCS += key_hook.c
 SRCS += utils_key_events.c
+SRCS += key_loop.c
 
 # srcs/events
 

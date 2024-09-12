@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/09/09 17:31:52 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:09:44 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <X11/X.h>
 # include "libft.h"
 # include "mlx.h"
 
@@ -40,6 +41,7 @@
 # define ESC_KEY 65307
 # define PLUS_KEY 65451
 # define MINUS_KEY 65453
+# define TAB_KEY_SIZE 10
 # define Q_KEY 113
 # define E_KEY 101
 # define W_KEY 119
@@ -58,7 +60,11 @@
 # define ZOOOM 1
 # define HEXA_BASE "0123456789ABCDEF"
 
-typedef enum e_state {error = -1, success}	t_state;
+typedef enum e_state {error = -1, success}			t_state;
+typedef enum e_pressed {not_pressed = 0, pressed}	t_pressed;
+
+
+typedef struct s_display	t_display;
 
 typedef struct s_center
 {
@@ -113,6 +119,13 @@ typedef struct s_matrix
 	size_t	cols;
 }	t_matrix;
 
+typedef struct s_key
+{
+	t_pressed	state;
+	int		keycode;
+	void	(*f)(t_display *);
+}	t_key;
+
 typedef struct s_display
 {
 	void		*p_mlx;
@@ -127,7 +140,9 @@ typedef struct s_display
 	double		translation_y;
 	t_center	*center;
 	bool		is_color_map;
+	t_key		keys[TAB_KEY_SIZE];
 }	t_display;
+
 
 typedef struct s_segment
 {
@@ -142,6 +157,7 @@ typedef struct s_segment
 	double		start_x;
 	double		start_y;
 }	t_segment;
+
 
 t_state	get_model(char *file, t_model *model);
 t_state	is_valid_file(char *file);
@@ -171,8 +187,8 @@ int		choose_color(int color_start, int color_end, float t);
 void	horizontal_rotate(t_display *display, size_t y, size_t x);
 void	vertical_rotate(t_display *display, size_t y, size_t x);
 void	key_events(int keycode, t_display *display);
-void	x_translation_key(int keycode, t_display *display);
-void	y_translation_key(int keycode, t_display *display);
+void	x_translation_key(t_display *display);
+void	y_translation_key(t_display *display);
 int		get_color_from_height(int heigh, t_extremum *extremum);
 void	get_color(t_matrix *matrix, t_model *model, size_t x, size_t y);
 void	x_translation(t_display *display, size_t y, size_t x);
@@ -180,4 +196,10 @@ void	y_translation(t_display *display, size_t y, size_t x);
 bool	is_good_zoom(t_display *display);
 void	fix_zoom(t_display *display);
 void	setup_points(t_display *display);
+int		key_press(int keycode, t_display *display);
+int		key_release(int keycode, t_display *display);
+int		key_loop_events(t_display *display);
+void	rotate_vertical_key(t_display *display);
+void	rotate_horizontal_key(t_display *display);
+void	zoom_key(t_display *display);
 #endif
