@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 10:44:05 by hucherea          #+#    #+#             */
-/*   Updated: 2024/09/13 15:41:31 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:57:42 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	x_translation_key(t_display *display)
 		if (display->keys[i].keycode == RIGHT_KEY
 			&& display->keys[i].state == pressed)
 		{
-			display->translation_x += TRANSLATION;
+			display->translation_x -= TRANSLATION;
 		}
 		if (display->keys[i].keycode == LEFT_KEY
 			&& display->keys[i].state == pressed)
 		{
-			display->translation_x -= TRANSLATION;
+			display->translation_x += TRANSLATION;
 		}
 		++i;
 	}
@@ -49,6 +49,27 @@ void	y_translation_key(t_display *display)
 			&& display->keys[i].state == pressed)
 		{
 			display->translation_y += TRANSLATION;
+		}
+		++i;
+	}
+}
+
+void	z_power_key(t_display *display)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < TAB_KEY_SIZE)
+	{
+		if (display->keys[i].keycode == SPACE_KEY
+			&& display->keys[i].state == pressed)
+		{
+			display->z_power += Z_POWER;
+		}
+		if (display->keys[i].keycode == C_KEY
+			&& display->keys[i].state == pressed)
+		{
+			display->z_power -= Z_POWER;
 		}
 		++i;
 	}

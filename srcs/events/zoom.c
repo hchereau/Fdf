@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:21:33 by imback            #+#    #+#             */
-/*   Updated: 2024/09/09 14:50:46 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:29:31 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	get_offset(t_center *center_zoom, t_point *point)
 {
-	center_zoom->x_offset = point->x - WINDOW_WIDTH / 2;
-	center_zoom->y_offset = point->y - WINDOW_HEIGHT / 2;
+	center_zoom->x_offset = (point->x - WINDOW_WIDTH / 2);
+	center_zoom->y_offset = (point->y - WINDOW_HEIGHT / 2);
 }
 
 void	add_zoom(t_display *display, t_center *center_zoom, size_t y, size_t x)
@@ -30,3 +30,4 @@ void	add_zoom(t_display *display, t_center *center_zoom, size_t y, size_t x)
 	else
 		display->matrix->points[y][x].z *= display->zoom;
 }
+

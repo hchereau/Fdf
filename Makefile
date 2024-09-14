@@ -97,7 +97,6 @@ CC := cc
 CFLAGS += -Wall
 CFLAGS += -Wextra
 CFLAGS += -Werror
-CFLAGS += -O2
 
 ### LINKING ####################################################################
 

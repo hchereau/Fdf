@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:06:47 by imback            #+#    #+#             */
-/*   Updated: 2024/09/14 15:34:18 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/14 17:00:34 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,27 @@ void	rotate_vertical_key(t_display *display)
 	}
 }
 
+void	rotate_z_key(t_display *display)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < TAB_KEY_SIZE)
+	{
+		if (display->keys[i].keycode == E_KEY
+			&& display->keys[i].state == pressed)
+		{
+			display->z_rotate_angle += ANGLE_ROTATE;
+		}
+		if (display->keys[i].keycode == Q_KEY
+			&& display->keys[i].state == pressed)
+		{
+			display->z_rotate_angle -= ANGLE_ROTATE;
+		}
+		++i;
+	}
+}
+
 void	zoom_key(t_display *display)
 {
 	size_t	i;
@@ -80,7 +101,7 @@ void	zoom_key(t_display *display)
 
 void	key_events(t_display *display)
 {
-	if (display->keys[10].state == pressed)
+	if (display->keys[12].state == pressed)
 	{
 		close_window(display);
 	}
@@ -89,4 +110,6 @@ void	key_events(t_display *display)
 	rotate_vertical_key(display);
 	y_translation_key(display);
 	x_translation_key(display);
+	rotate_z_key(display);
+	z_power_key(display);
 }

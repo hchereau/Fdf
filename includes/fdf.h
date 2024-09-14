@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/09/14 15:39:18 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/14 17:33:34 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,19 @@
 # define DISTANCE 1
 # define HEIGHT_DIST 1
 # define ZOOM 1
+# define Z_POWER 0.1
 # define ESC_KEY 65307
 # define PLUS_KEY 65451
 # define MINUS_KEY 65453
-# define TAB_KEY_SIZE 11
+# define TAB_KEY_SIZE 15
 # define Q_KEY 113
 # define E_KEY 101
 # define W_KEY 119
 # define S_KEY 115
 # define A_KEY 97
 # define D_KEY 100
+# define SPACE_KEY 32
+# define C_KEY 99
 # define UP_KEY 65362
 # define DOWN_KEY 65364
 # define LEFT_KEY 65361
@@ -58,7 +61,6 @@
 # define ANGLE_ROTATE_ISOMETRIC 0.1
 # define ANGLE_ROTATE_HORIZONTAL 273
 # define ANGLE_ROTATE_VERTICAL 0
-# define ZOOOM 1
 # define HEXA_BASE "0123456789ABCDEF"
 
 typedef enum e_state {error = -1, success}			t_state;
@@ -123,8 +125,7 @@ typedef struct s_matrix
 typedef struct s_key
 {
 	t_pressed	state;
-	int		keycode;
-	void	(*f)(t_display *);
+	int			keycode;
 }	t_key;
 
 typedef struct s_display
@@ -137,6 +138,8 @@ typedef struct s_display
 	double			horizontal_angle;
 	double			vertical_angle;
 	double			isometric_angle;
+	double			z_rotate_angle;
+	double			z_power;
 	double			translation_x;
 	double			translation_y;
 	t_center		*center;
@@ -145,6 +148,7 @@ typedef struct s_display
 	float			fps;
 	struct timeval	last_time;
 	int				frame_count;
+	double			factor;
 }	t_display;
 
 
@@ -205,4 +209,6 @@ int		key_release(int keycode, t_display *display);
 void	rotate_vertical_key(t_display *display);
 void	rotate_horizontal_key(t_display *display);
 void	zoom_key(t_display *display);
+void	z_rotate(t_display *display, size_t y, size_t x);
+void	z_power_key(t_display *display);
 #endif

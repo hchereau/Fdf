@@ -6,11 +6,16 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 09:13:01 by imback            #+#    #+#             */
-/*   Updated: 2024/09/14 15:42:28 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:03:57 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static void	z_power(t_display *display, size_t y, size_t x)
+{
+	display->matrix->points[y][x].z *= (display->z_power * display->factor);
+}
 
 void	add_events(t_display *display)
 {
@@ -25,10 +30,12 @@ void	add_events(t_display *display)
 		x = 0;
 		while (x < display->matrix->cols)
 		{
+			z_power(display, y, x);
 			add_zoom(display, &center_center, y, x);
 			isometric(display, y, x);
 			horizontal_rotate(display, y, x);
 			vertical_rotate(display, y, x);
+			z_rotate(display, y, x);
 			++x;
 		}
 		++y;
