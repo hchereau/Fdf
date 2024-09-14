@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:56:21 by imback            #+#    #+#             */
-/*   Updated: 2024/09/12 12:00:14 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:50:12 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,16 @@ static void	setup_tab_keys(t_display *display)
 		i++;
 	}
 	display->keys[0].keycode = PLUS_KEY;
-	display->keys[0].f = zoom_key;
 	display->keys[1].keycode = MINUS_KEY;
-	display->keys[1].f = zoom_key;
 	display->keys[2].keycode = W_KEY;
-	display->keys[2].f = rotate_vertical_key;
 	display->keys[3].keycode = S_KEY;
-	display->keys[3].f = rotate_vertical_key;
 	display->keys[4].keycode = D_KEY;
-	display->keys[4].f = rotate_horizontal_key;
 	display->keys[5].keycode = A_KEY;
-	display->keys[5].f = rotate_horizontal_key;
 	display->keys[6].keycode = UP_KEY;
-	display->keys[6].f = y_translation_key;
 	display->keys[7].keycode = DOWN_KEY;
-	display->keys[7].f = y_translation_key;
 	display->keys[8].keycode = RIGHT_KEY;
-	display->keys[8].f = x_translation_key;
 	display->keys[9].keycode = LEFT_KEY;
-	display->keys[9].f = x_translation_key;
+	display->keys[10].keycode = ESC_KEY;
 }
 
 static void	setup_values(t_display *display)

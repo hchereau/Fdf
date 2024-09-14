@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:32:16 by imback            #+#    #+#             */
-/*   Updated: 2024/09/12 14:12:35 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:44:49 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 static void	setup_loop_mlx(t_display *display)
 {
+	gettimeofday(&display->last_time, NULL);
+	display->fps = 0.0;
+	display->frame_count = 0;
 	mlx_hook(display->p_win, KeyPress, KeyPressMask, key_press, display);
 	mlx_hook(display->p_win, KeyRelease, KeyReleaseMask, key_release, display);
 	mlx_hook(display->p_win, 17, 0, close_window, display);
-	mlx_key_hook(display->p_win, key_hook, display);
+	mlx_loop_hook(display->p_mlx, key_hook, display);
 	mlx_loop(display->p_mlx);
 }
 

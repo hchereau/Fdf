@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/09/12 14:09:44 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:39:18 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <X11/X.h>
 # include "libft.h"
 # include "mlx.h"
+# include <sys/time.h>
 
 # define ERROR_FILE ENOENT
 # define END_GNL 0
@@ -41,7 +42,7 @@
 # define ESC_KEY 65307
 # define PLUS_KEY 65451
 # define MINUS_KEY 65453
-# define TAB_KEY_SIZE 10
+# define TAB_KEY_SIZE 11
 # define Q_KEY 113
 # define E_KEY 101
 # define W_KEY 119
@@ -52,8 +53,8 @@
 # define DOWN_KEY 65364
 # define LEFT_KEY 65361
 # define RIGHT_KEY 65363
-# define TRANSLATION 10
-# define ANGLE_ROTATE 5
+# define TRANSLATION 2
+# define ANGLE_ROTATE 1
 # define ANGLE_ROTATE_ISOMETRIC 0.1
 # define ANGLE_ROTATE_HORIZONTAL 273
 # define ANGLE_ROTATE_VERTICAL 0
@@ -128,19 +129,22 @@ typedef struct s_key
 
 typedef struct s_display
 {
-	void		*p_mlx;
-	void		*p_win;
-	t_matrix	*matrix;
-	t_img		*img;
-	double		zoom;
-	double		horizontal_angle;
-	double		vertical_angle;
-	double		isometric_angle;
-	double		translation_x;
-	double		translation_y;
-	t_center	*center;
-	bool		is_color_map;
-	t_key		keys[TAB_KEY_SIZE];
+	void			*p_mlx;
+	void			*p_win;
+	t_matrix		*matrix;
+	t_img			*img;
+	double			zoom;
+	double			horizontal_angle;
+	double			vertical_angle;
+	double			isometric_angle;
+	double			translation_x;
+	double			translation_y;
+	t_center		*center;
+	bool			is_color_map;
+	t_key			keys[TAB_KEY_SIZE];
+	float			fps;
+	struct timeval	last_time;
+	int				frame_count;
 }	t_display;
 
 
@@ -172,7 +176,7 @@ void	fill_image(t_point **points, t_display *display);
 void	img_pix_put(t_img *img, int x, int y, int color);
 void	print_matrix_with_mlx(t_display *display);
 int		close_window(t_display *display);
-int		key_hook(int keycode, t_display *display);
+int		key_hook(t_display *display);
 void	free_matrix(t_matrix *matrix);
 void	free_cp_matrix(t_matrix *matrix);
 t_point	**copy_points(t_point **points, int rows, int cols);
@@ -186,7 +190,7 @@ void	draws_segments(t_point **points, t_display *display);
 int		choose_color(int color_start, int color_end, float t);
 void	horizontal_rotate(t_display *display, size_t y, size_t x);
 void	vertical_rotate(t_display *display, size_t y, size_t x);
-void	key_events(int keycode, t_display *display);
+void	key_events(t_display *display);
 void	x_translation_key(t_display *display);
 void	y_translation_key(t_display *display);
 int		get_color_from_height(int heigh, t_extremum *extremum);
@@ -198,7 +202,6 @@ void	fix_zoom(t_display *display);
 void	setup_points(t_display *display);
 int		key_press(int keycode, t_display *display);
 int		key_release(int keycode, t_display *display);
-int		key_loop_events(t_display *display);
 void	rotate_vertical_key(t_display *display);
 void	rotate_horizontal_key(t_display *display);
 void	zoom_key(t_display *display);

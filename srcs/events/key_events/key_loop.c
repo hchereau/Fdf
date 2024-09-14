@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 11:27:32 by hucherea          #+#    #+#             */
-/*   Updated: 2024/09/12 14:59:15 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:39:55 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	key_release(int keycode, t_display *display)
 	{
 		if (display->keys[i].keycode == keycode)
 		{
-			printf("\nkeycode release: %d\n", keycode);
 			display->keys[i].state = not_pressed;
 		}
 		i++;
@@ -68,11 +67,4 @@ int	key_release(int keycode, t_display *display)
 // 		}
 // 	}
 // 	return (0);
-// }
-
-
-
-// int	key_loop_events(t_display *display)
-// {
-
 // }
