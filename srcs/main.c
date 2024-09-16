@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:12:47 by imback            #+#    #+#             */
-/*   Updated: 2024/08/31 17:05:53 by imback           ###   ########.fr       */
+/*   Updated: 2024/09/16 15:03:34 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static bool	is_valid_argument_number(int ac, char *output)
 		return (true);
 	else
 	{
-		ft_printf("Usage: %s <file>\n", output);
+		ft_dprintf(STDERR_FILENO, "Usage: %s <file>\n", output);
 		return (false);
 	}
 }

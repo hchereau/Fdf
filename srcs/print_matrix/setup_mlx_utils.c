@@ -1,45 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_loop.c                                         :+:      :+:    :+:   */
+/*   setup_mlx_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/11 11:27:32 by hucherea          #+#    #+#             */
-/*   Updated: 2024/09/16 15:11:43 by hucherea         ###   ########.fr       */
+/*   Created: 2024/09/16 15:14:40 by hucherea          #+#    #+#             */
+/*   Updated: 2024/09/16 15:14:48 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	key_press(int keycode, t_display *display)
+void	setup_tab_keys_vue(t_display *display)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < TAB_KEY_SIZE)
-	{
-		if (display->keys[i].keycode == keycode)
-		{
-			display->keys[i].state = pressed;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	key_release(int keycode, t_display *display)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < TAB_KEY_SIZE)
-	{
-		if (display->keys[i].keycode == keycode)
-		{
-			display->keys[i].state = not_pressed;
-		}
-		i++;
-	}
-	return (0);
+	display->keys[15].keycode = I_KEY;
+	display->keys[16].keycode = P_KEY;
+	display->keys[17].keycode = N_KEY;
 }

@@ -1,45 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_loop.c                                         :+:      :+:    :+:   */
+/*   perspective.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/11 11:27:32 by hucherea          #+#    #+#             */
-/*   Updated: 2024/09/16 15:11:43 by hucherea         ###   ########.fr       */
+/*   Created: 2024/09/16 13:37:40 by hucherea          #+#    #+#             */
+/*   Updated: 2024/09/16 15:11:24 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	key_press(int keycode, t_display *display)
+void	perspective(t_display *display, size_t y, size_t x)
 {
-	size_t	i;
+	double	perspective;
 
-	i = 0;
-	while (i < TAB_KEY_SIZE)
+	if (display->camera != 0)
 	{
-		if (display->keys[i].keycode == keycode)
-		{
-			display->keys[i].state = pressed;
-		}
-		i++;
+		perspective = FOCAL_LENGTH;
+		perspective /= DIST_CAM;
+		display->matrix->points[y][x].x = display->matrix->points[y][x].x
+			* perspective + WINDOW_WIDTH / 2;
+		display->matrix->points[y][x].y = display->matrix->points[y][x].y
+			* perspective + WINDOW_HEIGHT / 2;
 	}
-	return (0);
-}
-
-int	key_release(int keycode, t_display *display)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < TAB_KEY_SIZE)
-	{
-		if (display->keys[i].keycode == keycode)
-		{
-			display->keys[i].state = not_pressed;
-		}
-		i++;
-	}
-	return (0);
 }

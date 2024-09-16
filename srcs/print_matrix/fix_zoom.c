@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:24:00 by hucherea          #+#    #+#             */
-/*   Updated: 2024/09/09 16:22:28 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:12:13 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ bool	is_good_zoom(t_display *display)
 	}
 	return (true);
 }
-
 
 void	fix_zoom(t_display *display)
 {

@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:45:57 by imback            #+#    #+#             */
-/*   Updated: 2024/09/09 15:58:42 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:12:24 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	fill_image(t_point **points, t_display *display)
 	}
 	draws_segments(display->matrix->points, display);
 }
-
-
 
 void	setup_points(t_display *display)
 {

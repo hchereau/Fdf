@@ -44,6 +44,7 @@ SRCS += get_color_matrix.c
 
 SRCS += fill_window.c
 SRCS += print_matrix_with_mlx.c
+SRCS += setup_mlx_utils.c
 SRCS += setup_mlx.c
 SRCS += img_pix_put.c
 SRCS += refresh_window.c
@@ -65,6 +66,7 @@ SRCS += zoom.c
 SRCS += isometric.c
 SRCS += rotate.c
 SRCS += translation.c
+SRCS += perspective.c
 
 # srcs/events/segments
 

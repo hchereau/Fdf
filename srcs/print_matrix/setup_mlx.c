@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:56:21 by imback            #+#    #+#             */
-/*   Updated: 2024/09/14 18:48:30 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:13:56 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,29 @@ static void	setup_tab_keys(t_display *display)
 	display->keys[14].keycode = C_KEY;
 }
 
-static void	setup_values(t_display *display)
+void	setup_values_isometric(t_display *display)
 {
-	const double map_size = sqrt(display->matrix->rows * display->matrix->rows
-			+ display->matrix->cols * display->matrix->cols);
-	display->factor = map_size / 100;
-	display->zoom = 0;
+	display->factor = 1;
+	if (display->keys[15].state == not_pressed)
+	{
+		display->is_perspective = false;
+		display->is_isometric = true;
+		display->zoom = 0;
+		display->z_power = 1.0 / display->factor;
+	}
 	display->horizontal_angle = ANGLE_ROTATE_HORIZONTAL / display->factor;
 	display->vertical_angle = ANGLE_ROTATE_VERTICAL / display->factor;
 	display->isometric_angle = M_PI / 6;
 	display->translation_x = 0;
-	display->z_power = 1.0 / display->factor;
 	display->translation_y = 0;
-	setup_tab_keys(display);
+	display->z_rotate_angle = 0;
+	display->camera = DIST_CAM;
 }
-
-
 
 void	setup_mlx(t_display *display)
 {
 	setup_display(display);
 	setup_img(display);
-	setup_values(display);
+	setup_tab_keys(display);
+	setup_values_isometric(display);
 }

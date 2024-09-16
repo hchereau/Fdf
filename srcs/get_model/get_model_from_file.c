@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_model_from_file.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imback <imback@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:21:48 by imback            #+#    #+#             */
-/*   Updated: 2024/09/01 20:39:45 by imback           ###   ########.fr       */
+/*   Updated: 2024/09/16 15:05:10 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_state	fill_color_and_matrix(t_model *model, int i_matrix, int i_split,
 	split_color = ft_split(split, ',');
 	if (split_color == NULL || count_words(split, ',') > 2)
 	{
-		ft_printf("fill_color_and_matrix: Invalid file\n");
+		ft_dprintf(STDERR_FILENO, "fill_color_and_matrix: Invalid file\n");
 		free_strs(split_color);
 		return (error);
 	}
@@ -93,7 +93,7 @@ static t_state	fill_model(t_model *model, int len_split_line,
 	}
 	if (is_valid_line == error)
 	{
-		ft_printf("fill_model: Invalid file\n");
+		ft_dprintf(STDERR_FILENO, "fill_model: Invalid file\n");
 		free_model(model);
 		return (error);
 	}
@@ -112,7 +112,7 @@ t_state	get_model_from_file(char *file, t_model *model)
 	line = get_next_line(fd);
 	if (line == NULL)
 	{
-		ft_printf("get_model_from_file: Invalid file\n");
+		ft_dprintf(STDERR_FILENO, "get_model_from_file: Invalid file\n");
 		return (error);
 	}
 	model->rows = get_model_size(file);
@@ -120,7 +120,7 @@ t_state	get_model_from_file(char *file, t_model *model)
 	model->color = (int **)malloc(sizeof(int *) * model->rows);
 	if (model->matrix == NULL || model->color == NULL)
 	{
-		ft_printf("get_model_from_file: Malloc error\n");
+		ft_dprintf(STDERR_FILENO, "get_model_from_file: Malloc error\n");
 		free(line);
 		return (error);
 	}

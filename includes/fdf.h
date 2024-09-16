@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/09/14 17:33:34 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:15:00 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,16 @@
 # define ESC_KEY 65307
 # define PLUS_KEY 65451
 # define MINUS_KEY 65453
-# define TAB_KEY_SIZE 15
+# define TAB_KEY_SIZE 18
 # define Q_KEY 113
 # define E_KEY 101
 # define W_KEY 119
 # define S_KEY 115
 # define A_KEY 97
 # define D_KEY 100
+# define I_KEY 105
+# define P_KEY 112
+# define N_KEY 110
 # define SPACE_KEY 32
 # define C_KEY 99
 # define UP_KEY 65362
@@ -62,10 +65,11 @@
 # define ANGLE_ROTATE_HORIZONTAL 273
 # define ANGLE_ROTATE_VERTICAL 0
 # define HEXA_BASE "0123456789ABCDEF"
+# define DIST_CAM 1000.0
+# define FOCAL_LENGTH 500.0
 
 typedef enum e_state {error = -1, success}			t_state;
 typedef enum e_pressed {not_pressed = 0, pressed}	t_pressed;
-
 
 typedef struct s_display	t_display;
 
@@ -149,8 +153,10 @@ typedef struct s_display
 	struct timeval	last_time;
 	int				frame_count;
 	double			factor;
+	double			camera;
+	bool			is_isometric;
+	bool			is_perspective;
 }	t_display;
-
 
 typedef struct s_segment
 {
@@ -165,7 +171,6 @@ typedef struct s_segment
 	double		start_x;
 	double		start_y;
 }	t_segment;
-
 
 t_state	get_model(char *file, t_model *model);
 t_state	is_valid_file(char *file);
@@ -211,4 +216,8 @@ void	rotate_horizontal_key(t_display *display);
 void	zoom_key(t_display *display);
 void	z_rotate(t_display *display, size_t y, size_t x);
 void	z_power_key(t_display *display);
+void	setup_values_isometric(t_display *display);
+void	vue_events(t_display *display);
+void	perspective(t_display *display, size_t y, size_t x);
+void	setup_tab_keys_vue(t_display *display);
 #endif

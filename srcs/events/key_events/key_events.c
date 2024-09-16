@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:06:47 by imback            #+#    #+#             */
-/*   Updated: 2024/09/14 17:00:34 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:18:25 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,5 @@ void	key_events(t_display *display)
 	x_translation_key(display);
 	rotate_z_key(display);
 	z_power_key(display);
+	vue_events(display);
 }

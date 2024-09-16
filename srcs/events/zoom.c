@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:21:33 by imback            #+#    #+#             */
-/*   Updated: 2024/09/14 18:29:31 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:08:00 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,3 @@ void	add_zoom(t_display *display, t_center *center_zoom, size_t y, size_t x)
 	else
 		display->matrix->points[y][x].z *= display->zoom;
 }
-
