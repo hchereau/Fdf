@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:12:47 by imback            #+#    #+#             */
-/*   Updated: 2024/09/16 15:03:34 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/16 17:14:22 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ static t_state	get_matrix(char *file, t_display *display)
 		}
 		else
 		{
-			printf("Failed to get matrix from model\n");
+			ft_dprintf(STDERR_FILENO, "Failed to get matrix from model\n");
 		}
 		free_model(&model);
 	}
 	else
 	{
-		printf("Failed to get model from file: %s\n", file);
+		ft_dprintf(STDERR_FILENO, "Failed to get model from file: %s\n", file);
 	}
 	return (state);
 }

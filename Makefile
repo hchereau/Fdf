@@ -66,7 +66,7 @@ SRCS += zoom.c
 SRCS += isometric.c
 SRCS += rotate.c
 SRCS += translation.c
-SRCS += perspective.c
+SRCS += parallel.c
 
 # srcs/events/segments
 
@@ -110,32 +110,49 @@ LINKS += -lm
 LINKS += -lz
 LINKS += -fPIE
 
+### COLOR ######################################################################
+
+BLUE := \033[0;34m
+GREEN := \033[0;32m
+WHITE := \033[0;37m
+
 ### RULES ######################################################################
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(LIB_MLX) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(LIB_MLX) $(INCLUDES) $(LINKS)
-
 $(OBJS): $(PATH_OBJS)%.o: %.c $(HEADERS)
-		@mkdir -p $(PATH_OBJS)
-		$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES) -O3
+	@mkdir -p $(PATH_OBJS)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES) -O3
+
+$(NAME): $(LIBFT) $(LIB_MLX) $(OBJS)
+	@echo "$(BLUE)Compiling $(NAME) ...$(WHITE)"
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(LIB_MLX) $(INCLUDES) $(LINKS)
+	@echo "$(GREEN)$(NAME) compiled !$(WHITE)"
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_FOLDER)
+	@echo "$(BLUE)Compiling libft ...$(WHITE)"
+	@$(MAKE) -sC $(LIBFT_FOLDER)
+	@echo "$(GREEN)libft compiled ! $(WHITE)"
 
 $(LIB_MLX):
-	$(MAKE) -C $(MINILIBX_FOLDER)
+	@echo "$(BLUE)Compiling minilibx ...$(WHITE)"
+	@$(MAKE) -sC $(MINILIBX_FOLDER) > /dev/null 2>&1
+	@echo "$(GREEN)minilibx compiled ! $(WHITE)"
 
 clean:
-	$(RM) -r $(PATH_OBJS)
-	$(MAKE) -C $(LIBFT_FOLDER) clean
-	$(MAKE) -C $(MINILIBX_FOLDER) clean
+	@echo "$(BLUE)Cleaning ...$(WHITE)"
+	@$(RM) -r $(PATH_OBJS)
+	@$(MAKE) -sC $(LIBFT_FOLDER) clean
+	@$(MAKE) -sC $(MINILIBX_FOLDER) clean > /dev/null 2>&1
+	@echo "$(GREEN)Cleaned ! $(WHITE)"
 
 fclean: clean
-	$(RM) $(NAME)
-	$(MAKE) -C $(LIBFT_FOLDER) fclean
+	@echo "$(BLUE)Full cleaning ...$(WHITE)"
+	@$(RM) $(NAME)
+	@$(MAKE) -sC $(LIBFT_FOLDER) fclean
+	@echo "$(GREEN)Full cleaned ! $(WHITE)"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft minilibx
+.SILENT: all clean fclean re libft minilibx

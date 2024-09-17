@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:56:21 by imback            #+#    #+#             */
-/*   Updated: 2024/09/16 15:13:56 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:41:03 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,17 @@ static void	setup_tab_keys(t_display *display)
 	display->keys[12].keycode = ESC_KEY;
 	display->keys[13].keycode = SPACE_KEY;
 	display->keys[14].keycode = C_KEY;
+	setup_tab_keys_vue(display);
 }
 
-void	setup_values_isometric(t_display *display)
+void	setup_values(t_display *display)
 {
 	display->factor = 1;
-	if (display->keys[15].state == not_pressed)
+	if (display->keys[15].state == not_pressed
+		&& display->keys[16].state == not_pressed
+		&& display->keys[17].state == not_pressed)
 	{
-		display->is_perspective = false;
+		display->is_parallel = false;
 		display->is_isometric = true;
 		display->zoom = 0;
 		display->z_power = 1.0 / display->factor;
@@ -80,5 +83,5 @@ void	setup_mlx(t_display *display)
 	setup_display(display);
 	setup_img(display);
 	setup_tab_keys(display);
-	setup_values_isometric(display);
+	setup_values(display);
 }

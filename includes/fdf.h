@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/09/16 15:15:00 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:40:52 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ typedef struct s_display
 	double			factor;
 	double			camera;
 	bool			is_isometric;
-	bool			is_perspective;
+	bool			is_parallel;
 }	t_display;
 
 typedef struct s_segment
@@ -216,8 +216,8 @@ void	rotate_horizontal_key(t_display *display);
 void	zoom_key(t_display *display);
 void	z_rotate(t_display *display, size_t y, size_t x);
 void	z_power_key(t_display *display);
-void	setup_values_isometric(t_display *display);
+void	setup_values(t_display *display);
 void	vue_events(t_display *display);
-void	perspective(t_display *display, size_t y, size_t x);
 void	setup_tab_keys_vue(t_display *display);
+void	parallel(t_display *display, size_t y, size_t x);
 #endif

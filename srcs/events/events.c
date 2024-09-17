@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 09:13:01 by imback            #+#    #+#             */
-/*   Updated: 2024/09/16 15:07:47 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:35:24 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	add_events(t_display *display)
 			add_zoom(display, &center_center, y, x);
 			if (display->is_isometric == true)
 				isometric(display, y, x);
-			else if (display->is_perspective == true)
-				perspective(display, y, x);
+			else if (display->is_parallel == true)
+				parallel(display, y, x);
 			horizontal_rotate(display, y, x);
 			vertical_rotate(display, y, x);
 			z_rotate(display, y, x);
