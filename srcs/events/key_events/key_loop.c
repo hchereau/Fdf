@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 11:27:32 by hucherea          #+#    #+#             */
-/*   Updated: 2024/09/16 18:55:41 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:45:47 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	key_press(int keycode, t_display *display)
 	size_t	i;
 
 	i = 0;
-	printf("keycode: %d\n", keycode);
 	while (i < TAB_KEY_SIZE)
 	{
 		if (display->keys[i].keycode == keycode)

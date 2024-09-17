@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 11:17:08 by imback            #+#    #+#             */
-/*   Updated: 2024/09/17 10:40:52 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:48:57 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,9 @@
 # define TRANSLATION 2
 # define ANGLE_ROTATE 1
 # define ANGLE_ROTATE_ISOMETRIC 0.1
-# define ANGLE_ROTATE_HORIZONTAL 273
+# define ANGLE_ROTATE_HORIZONTAL -90
 # define ANGLE_ROTATE_VERTICAL 0
 # define HEXA_BASE "0123456789ABCDEF"
-# define DIST_CAM 1000.0
-# define FOCAL_LENGTH 500.0
 
 typedef enum e_state {error = -1, success}			t_state;
 typedef enum e_pressed {not_pressed = 0, pressed}	t_pressed;
@@ -153,7 +151,6 @@ typedef struct s_display
 	struct timeval	last_time;
 	int				frame_count;
 	double			factor;
-	double			camera;
 	bool			is_isometric;
 	bool			is_parallel;
 }	t_display;

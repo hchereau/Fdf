@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:56:21 by imback            #+#    #+#             */
-/*   Updated: 2024/09/17 10:41:03 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:49:03 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	setup_values(t_display *display)
 	display->translation_x = 0;
 	display->translation_y = 0;
 	display->z_rotate_angle = 0;
-	display->camera = DIST_CAM;
 }
 
 void	setup_mlx(t_display *display)
