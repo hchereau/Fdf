@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:15:49 by imback            #+#    #+#             */
-/*   Updated: 2024/09/20 15:41:12 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/20 15:52:15 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool	is_not_hide_fdf_file(char *file)
 
 	if (strncmp(file + len - 5, "/.fdf", len) == 0)
 	{
-		ft_dprintf(STDERR_FILENO, "File %s is a hidden file\n", file);
+		ft_dprintf(STDERR_FILENO, "File %s is an invalid hidden file\n", file);
 		return (false);
 	}
 	return (true);
