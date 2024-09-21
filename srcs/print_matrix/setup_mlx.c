@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:56:21 by imback            #+#    #+#             */
-/*   Updated: 2024/09/17 10:49:03 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/21 16:36:36 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,19 @@
 static void	setup_display(t_display *display)
 {
 	display->p_mlx = mlx_init();
+	if (display->p_mlx == NULL)
+	{
+		ft_dprintf(STDERR_FILENO, "Failed to initialize mlx\n");
+		exit(ERROR_MAIN);
+	}
 	display->p_win = mlx_new_window(display->p_mlx, WINDOW_WIDTH,
 			WINDOW_HEIGHT, "fdf");
+	if (display->p_win == NULL)
+	{
+		free(display->p_mlx);
+		ft_dprintf(STDERR_FILENO, "Failed to create window\n");
+		exit(ERROR_MAIN);
+	}
 }
 
 static void	setup_img(t_display *display)
