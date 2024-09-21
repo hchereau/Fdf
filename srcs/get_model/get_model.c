@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:21:16 by imback            #+#    #+#             */
-/*   Updated: 2024/09/21 16:38:03 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/21 17:00:26 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_state	get_model(char *file, t_model *model)
 		else
 		{
 			if (model->matrix != NULL)
-				free_matrix(model->matrix);
+				free(model->matrix);
 			if (model->color != NULL)
-				free_matrix(model->color);
+				free(model->color);
 			ft_dprintf(STDERR_FILENO,
 				"Failed to get model from file: %s\n", file);
 		}
