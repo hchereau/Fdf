@@ -6,7 +6,7 @@
 /*   By: hucherea <hucherea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:15:49 by imback            #+#    #+#             */
-/*   Updated: 2024/09/20 15:52:15 by hucherea         ###   ########.fr       */
+/*   Updated: 2024/09/21 13:06:04 by hucherea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static t_state	is_existing_file(char *file)
 static bool	is_not_hide_fdf_file(char *file)
 {
 	const size_t	len = ft_strlen(file);
-
 
 	if (strncmp(file + len - 5, "/.fdf", len) == 0)
 	{
